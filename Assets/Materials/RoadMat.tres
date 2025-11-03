@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bvwfis2o4g6e3"]
+
+[ext_resource type="Shader" uid="uid://qpgyntmwnjp5" path="res://Assets/Materials/RoadShader.gdshader" id="1_jj1tg"]
+[ext_resource type="Texture2D" uid="uid://caddgd0gn63j8" path="res://Assets/Materials/RoadText.png" id="2_kjltv"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jj1tg")
+shader_parameter/_texture = ExtResource("2_kjltv")
+shader_parameter/light = 1.0

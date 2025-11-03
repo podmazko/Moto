@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cju7evaxoshtm"
+path="res://.godot/imported/Mr.Kitty - After Dark.mp3-f080c68b1a800ddf2a95078cf9b40f83.mp3str"
+
+[deps]
+
+source_file="res://Assets/Music/Mr.Kitty - After Dark.mp3"
+dest_files=["res://.godot/imported/Mr.Kitty - After Dark.mp3-f080c68b1a800ddf2a95078cf9b40f83.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=145.0
+beat_count=0
+bar_beats=4

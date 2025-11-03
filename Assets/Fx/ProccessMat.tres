@@ -1,0 +1,24 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://cr7i0xdkjnuyh"]
+
+[sub_resource type="Curve" id="Curve_yingx"]
+_data = [Vector2(0, 1), 0.0, 0.898914, 0, 0, Vector2(1, 0), -2.82072, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wkshi"]
+curve = SubResource("Curve_yingx")
+
+[resource]
+emission_shape = 3
+emission_box_extents = Vector3(2, 2, 6)
+angle_min = -360.0
+angle_max = 360.0
+direction = Vector3(-1, 0, 0)
+spread = 5.0
+initial_velocity_max = 150.0
+angular_velocity_min = 9.99998
+angular_velocity_max = 100.0
+gravity = Vector3(-20, 40, 0)
+radial_accel_min = -35.0
+radial_accel_max = 35.0
+scale_min = 0.1
+alpha_curve = SubResource("CurveTexture_wkshi")

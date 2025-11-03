@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://baa7oyotuduw3"]
+
+[ext_resource type="Script" uid="uid://ck0j56dnvvskd" path="res://Scenes/main_scene.gd" id="1_x4av3"]
+[ext_resource type="AudioStream" uid="uid://cju7evaxoshtm" path="res://Assets/Music/Mr.Kitty - After Dark.mp3" id="2_uxrcv"]
+[ext_resource type="Shader" uid="uid://vvd6u1tnqqxi" path="res://Assets/Shaders/SoundFX.gdshader" id="3_rpqi1"]
+[ext_resource type="PackedScene" uid="uid://cefhlwtqdm8en" path="res://Scenes/Player.tscn" id="4_uxrcv"]
+[ext_resource type="Shader" uid="uid://b7umvy50opauo" path="res://Assets/Shaders/SpeedScreen.gdshader" id="5_rf2cd"]
+
+[sub_resource type="Environment" id="Environment_uxrcv"]
+background_mode = 1
+glow_enabled = true
+glow_strength = 1.6
+fog_enabled = true
+fog_light_color = Color(0.116659, 0.130722, 0.15283, 1)
+fog_density = 0.008
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rf2cd"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rf2cd"]
+noise = SubResource("FastNoiseLite_rf2cd")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a814b"]
+shader = ExtResource("5_rf2cd")
+shader_parameter/noise = SubResource("NoiseTexture2D_rf2cd")
+shader_parameter/line_color = Color(1, 0.196078, 1, 0.360784)
+shader_parameter/line_count = 2.0
+shader_parameter/line_density = 0.5
+shader_parameter/line_faloff = 1.82
+shader_parameter/mask_size = 0.1
+shader_parameter/mask_edge = 0.5
+shader_parameter/animation_speed = 20.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uxrcv"]
+shader = ExtResource("3_rpqi1")
+shader_parameter/light = 1.0
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_x4av3")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_uxrcv")
+autoplay = true
+
+[node name="Player" parent="." instance=ExtResource("4_uxrcv")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uxrcv")
+
+[node name="Road" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.82366, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_a814b")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_uxrcv")
+offset_right = 511.0
+offset_bottom = 57.0
+
+[node name="Panel2" type="Panel" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_uxrcv")
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 2.0
+offset_top = 56.0
+offset_right = 513.0
+offset_bottom = 113.0
+grow_horizontal = 0
+rotation = -3.14159
