@@ -32,8 +32,8 @@ func _unhandled_input(event: InputEvent) -> void:
 					else:
 						_press_times[1]=0.25 #sec to unpress for jump
 
-				elif event.is_action("speed"):
-					PlayerData.emit_signal("SpeedChange",1+int(event.pressed))
+				#elif event.is_action("speed"):
+					#PlayerData.emit_signal("SpeedChange",1+int(event.pressed))
 
 
 func _calc_jump_n(_change:int):
@@ -83,7 +83,7 @@ func _process(delta: float) -> void:
 
 
 var SpdTween:Tween
-func SpeedChange(_new_speed:float,time:float=2.0)->void:
+func SpeedChange(_new_speed:float,time:float=3.0)->void:
 	PlayerData.speed=_new_speed
 	_control=pow(PlayerData.speed,0.5)#conrollobility according to speed
 

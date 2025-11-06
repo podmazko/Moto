@@ -25,7 +25,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.272, 11.4931)
 [node name="RoadWall" type="GPUParticles3D" parent="Root"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2045, 0.85102, -1.09336)
 amount = 300
-lifetime = 1.66
+lifetime = 1.71
 explosiveness = 1.0
 randomness = 1.0
 process_material = ExtResource("8_wi0c6")

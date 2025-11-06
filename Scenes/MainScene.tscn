@@ -37,7 +37,7 @@ shader_parameter/light = 1.0
 [node name="Main" type="Node3D"]
 script = ExtResource("1_x4av3")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_uxrcv")
 autoplay = true
 
@@ -51,7 +51,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.82366, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="SpeedLines" type="ColorRect" parent="CanvasLayer"]
 material = SubResource("ShaderMaterial_a814b")
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,3 +75,14 @@ offset_right = 513.0
 offset_bottom = 113.0
 grow_horizontal = 0
 rotation = -3.14159
+
+[node name="BitTracker" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "XXX"
+horizontal_alignment = 1

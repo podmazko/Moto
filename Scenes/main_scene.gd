@@ -1,10 +1,31 @@
 extends Node3D
 
-var _speed=0.0 #m per second
+#track setup
+var bpm=70
+var beat_zones:={0:"pause", 16:"normal",68:"speed", 100:"normal",132:"speed",
+				164:"longing",196:"normal+",228:"speed",292:"pause"}
+				
+				
+				
+#data params:
+var distance_per_bit:=100#m
+#normal/+ - normal speed, obj per 2/1 beat   #speed - speed x2 + objects every beat
+#longing - long press beats objects   #pause - nothing
+var zones_data:={#beats per object, object type(0-nothing,1-basic,2-long), speed
+	"pause":[0,0, 1.0],
+	"normal":[2,1, 1.0],
+	"normal+":[1,1, 1.0],
+	"speed":[1,1, 2.0],
+	"longing":[2,2, 1.0],
+	}
 
-var _bpm=145
-var _bpm_time:float
-var _aim_spd:float #distance 50 every beat
+
+#calculatables
+var speed=0.0 #current m per second
+var aim_spd:float #aimed m per second
+var beat_time:float #seconds to one beat
+var beat:int=0 #current bit, helps generate objects on road
+var zone:String="pause"
 
 @onready var Chunk:PackedScene=preload("res://Scenes/Parts/RoadChunk.tscn")
 @onready var Mat=preload("res://Assets/Materials/NeonMat.tres")
@@ -12,40 +33,64 @@ var _aim_spd:float #distance 50 every beat
 var chunks:=[]
 
 func _ready() -> void:
-	_bpm_time=_bpm/60
-	var _beats_per_second:float=_bpm/60.0
-	_aim_spd=_beats_per_second*50
+	beat_time=60.0/bpm
+	aim_spd=(bpm/60.0)*distance_per_bit
+	
+	beat=0
+	zone_change(beat_zones[beat])
+
 	#start gen
 	for i in 5:
 		gen_chunk(false)
-	_count=250
+	_road_m=250
 
-var _count:float=200
-var _beats:int
+@onready var Player=$Player
+@onready var AudioPlayer:AudioStreamPlayer=$AudioStreamPlayer
 func _process(delta: float) -> void:
-	_speed=lerp(_speed,_aim_spd*PlayerData.speed,delta*0.3)
-	_count-=_speed*delta
-	$Player.position.x-=_speed*delta
-	$CanvasLayer/ColorRect.material.set("shader_parameter/mask_edge",0.6+0.5*(2-PlayerData.speed))
+	speed=lerp(speed,aim_spd*PlayerData.speed,delta*0.2)
+	_road_m-=speed*delta
+	Player.position.x-=speed*delta
 	
-	if _count<0.0:
+	if _road_m<0.0: #road generating check
 		gen_chunk()
 	
-	var _time:float=$AudioStreamPlayer2D.get_playback_position()+AudioServer.get_time_since_last_mix()
+	#bit tracker
+	var _time:float=AudioPlayer.get_playback_position()+AudioServer.get_time_since_last_mix()
+	var _beat=int(_time/beat_time)
+	if _beat!=beat:
+		beat=_beat
+		if beat_zones.has(beat):
+			zone_change(beat_zones[beat])
+		$CanvasLayer/BitTracker.text=str(beat)+"\n"+zone
+
+	#volume to visual
 	var _db=db_to_linear(AudioServer.get_bus_peak_volume_left_db(0,0) )
+	Mat.set("shader_parameter/light",pow(3*_db,0.6) )
+	RoadMat.set("shader_parameter/light",_db)
+	
 	$CanvasLayer/Panel.scale.x=3*_db
 	$CanvasLayer/Panel2.scale.x=$CanvasLayer/Panel.scale.x
-	Mat.set("shader_parameter/light",pow($CanvasLayer/Panel.scale.x,0.6) )
-	RoadMat.set("shader_parameter/light",_db)
 
 
+@onready var SpeedLines:ColorRect=$CanvasLayer/SpeedLines
+func zone_change(_new_zone:String)->void:
+	zone=_new_zone
+	
+	var _new_speed:float=zones_data[zone][2]
+	if PlayerData.speed!=_new_speed:
+		PlayerData.emit_signal("SpeedChange",_new_speed)
+	SpeedLines.material.set("shader_parameter/mask_edge",0.6+0.5*(2-PlayerData.speed))
+
+
+@onready var Road:Node3D=$Road
+var _road_m:float=200 #to count when to generate next road chunk
 func gen_chunk(_clean:=true)->void:
-	_count=200
+	_road_m=200
 	var _node=Chunk.instantiate()
 	var _pos_x:float=50.0
-	if !chunks.is_empty():
+	if !chunks.is_empty():#not first chunk
 		_pos_x=chunks[chunks.size()-1].position.x-200
-	$Road.add_child(_node)
+	Road.add_child(_node)
 	chunks.append(_node)
 	_node.position.x=_pos_x
 	
