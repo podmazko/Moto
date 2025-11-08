@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cefhlwtqdm8en"]
+[gd_scene load_steps=9 format=3 uid="uid://cefhlwtqdm8en"]
 
 [ext_resource type="Script" uid="uid://cnor1rblg0sv7" path="res://Scenes/Player.gd" id="1_dtqjt"]
 [ext_resource type="ArrayMesh" uid="uid://b8iqit42ccbvb" path="res://Assets/Models/Motorcycle/Mesh/Sketchfab_Scene_Object_0.res" id="1_tdg3f"]
@@ -7,14 +7,9 @@
 [ext_resource type="ArrayMesh" uid="uid://c2sag0717o2so" path="res://Assets/Models/Motorcycle/Mesh/Sketchfab_Scene_Object_3.res" id="4_wi0c6"]
 [ext_resource type="ArrayMesh" uid="uid://b1qv372t6qb6h" path="res://Assets/Models/Motorcycle/Mesh/Sketchfab_Scene_Object_4.res" id="5_hp6x6"]
 [ext_resource type="ArrayMesh" uid="uid://b5hi4vv4xj2qd" path="res://Assets/Models/Motorcycle/Mesh/Sketchfab_Scene_Object_5.res" id="6_3tkgg"]
-[ext_resource type="Material" uid="uid://cr7i0xdkjnuyh" path="res://Assets/Fx/ProccessMat.tres" id="8_wi0c6"]
-[ext_resource type="Material" uid="uid://b84rs8vn5lhqp" path="res://Assets/Fx/ParticleMat.tres" id="9_hp6x6"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_3tkgg"]
-material = ExtResource("9_hp6x6")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tdg3f"]
-size = Vector3(13.9508, 6.6, 1)
+size = Vector3(13.951, 6.6, 3)
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_dtqjt")
@@ -22,17 +17,9 @@ script = ExtResource("1_dtqjt")
 [node name="Root" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.272, 11.4931)
 
-[node name="RoadWall" type="GPUParticles3D" parent="Root"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2045, 0.85102, -1.09336)
-amount = 300
-lifetime = 1.71
-explosiveness = 1.0
-randomness = 1.0
-process_material = ExtResource("8_wi0c6")
-draw_pass_1 = SubResource("BoxMesh_3tkgg")
-
 [node name="Player" type="StaticBody3D" parent="Root"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.27244, 0)
+input_ray_pickable = false
 
 [node name="Model" type="Node3D" parent="Root/Player"]
 transform = Transform3D(0.0169151, 0, 0, 0, -8.74228e-10, 0.02, 0, -0.02, -8.74228e-10, 0, 0, 0)

@@ -7,7 +7,6 @@ extends Node3D
 
 func _ready() -> void:
 	PlayerData.SpeedChange.connect(SpeedChange)
-	PlayerData.emit_signal("SpeedChange",1)
 
 
 var _press_times:=[0.0,0.0]
