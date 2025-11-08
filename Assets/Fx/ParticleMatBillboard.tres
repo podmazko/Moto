@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dskpc5dffs37q"]
+
+[resource]
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0.639216, 0, 1)
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false

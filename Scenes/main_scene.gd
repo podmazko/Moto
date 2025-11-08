@@ -1,6 +1,7 @@
 extends Node3D
 
 #track setup
+var distance_per_bit:=100#m
 var bpm=70
 var beat_zones:={0:"pause", 16:"normal-", 36:"normal",68:"speed", 100:"normal",132:"speed",
 				164:"longing",196:"normal+",228:"speed",292:"pause"}
@@ -8,7 +9,6 @@ var beat_zones:={0:"pause", 16:"normal-", 36:"normal",68:"speed", 100:"normal",1
 				
 				
 #data params:
-var distance_per_bit:=100#m
 #normal/+ - normal speed, obj per 2/1 beat   #speed - speed x2 + objects every beat
 #longing - long press beats objects   #pause - nothing
 var zones_data:={#beats per object, object type(0-nothing,1-basic,2-long), speed
@@ -43,7 +43,6 @@ var notes:={}
 
 func _ready() -> void:
 	PlayerData.SpeedChange.connect(SpeedChange)
-	
 	beat_time=60.0/bpm
 	aim_spd=(bpm/60.0)*distance_per_bit
 	
@@ -104,10 +103,12 @@ func gen_next_note(_beat:int)->void:
 		notes[beat_to_clean].queue_free()
 		notes.erase(beat_to_clean)
 
+
 func check_note(_beat:int)->void:
 	if notes.has(_beat):
-		notes[_beat].collide()
-
+		var _note:MeshInstance3D=notes[_beat]
+		if abs(_note.position.z-Player.Root.global_position.z)<9:
+			_note.collide()
 
 
 @onready var SpeedLines:ColorRect=$CanvasLayer/SpeedLines

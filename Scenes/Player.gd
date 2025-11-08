@@ -10,12 +10,14 @@ func _ready() -> void:
 
 
 var _press_times:=[0.0,0.0]
+var pressed:=[false,false]
 var _impulse:float
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 			if !event.echo:
 				if event.is_action("left"):
-					_impulse+=-1+2*int(event.pressed)
+					pressed[0]=event.pressed
+					_calc_impulse()
 					if !event.pressed:
 						if _press_times[0]>0.0:
 							_jump_n=_calc_jump_n(1)
@@ -23,7 +25,8 @@ func _unhandled_input(event: InputEvent) -> void:
 						_press_times[0]=0.25 #sec to unpress for jump
 
 				elif event.is_action("right"):
-					_impulse-=-1+2*int(event.pressed)
+					pressed[1]=event.pressed
+					_calc_impulse()
 					
 					if !event.pressed:
 						if _press_times[1]>0.0:
@@ -34,6 +37,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				#elif event.is_action("speed"):
 					#PlayerData.emit_signal("SpeedChange",1+int(event.pressed))
 
+func _calc_impulse()->void:
+	_impulse=int(pressed[0])-int(pressed[1])
 
 func _calc_jump_n(_change:int):
 	if _jump_n!=null:#has current jump in queue

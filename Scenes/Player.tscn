@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cefhlwtqdm8en"]
+[gd_scene load_steps=8 format=3 uid="uid://cefhlwtqdm8en"]
 
 [ext_resource type="Script" uid="uid://cnor1rblg0sv7" path="res://Scenes/Player.gd" id="1_dtqjt"]
 [ext_resource type="ArrayMesh" uid="uid://b8iqit42ccbvb" path="res://Assets/Models/Motorcycle/Mesh/Sketchfab_Scene_Object_0.res" id="1_tdg3f"]
@@ -8,49 +8,38 @@
 [ext_resource type="ArrayMesh" uid="uid://b1qv372t6qb6h" path="res://Assets/Models/Motorcycle/Mesh/Sketchfab_Scene_Object_4.res" id="5_hp6x6"]
 [ext_resource type="ArrayMesh" uid="uid://b5hi4vv4xj2qd" path="res://Assets/Models/Motorcycle/Mesh/Sketchfab_Scene_Object_5.res" id="6_3tkgg"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_tdg3f"]
-size = Vector3(13.951, 6.6, 3)
-
 [node name="Player" type="Node3D"]
 script = ExtResource("1_dtqjt")
 
 [node name="Root" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.272, 11.4931)
 
-[node name="Player" type="StaticBody3D" parent="Root"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.27244, 0)
-input_ray_pickable = false
+[node name="Model" type="Node3D" parent="Root"]
+transform = Transform3D(0.0169151, 0, 0, 0, -8.74228e-10, 0.02, 0, -0.02, -8.74228e-10, 1.68151, 3.27244, 0)
 
-[node name="Model" type="Node3D" parent="Root/Player"]
-transform = Transform3D(0.0169151, 0, 0, 0, -8.74228e-10, 0.02, 0, -0.02, -8.74228e-10, 0, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Root/Player/Model"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Root/Model"]
 mesh = ExtResource("1_tdg3f")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Root/Player/Model"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Root/Model"]
 mesh = ExtResource("2_dtqjt")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="Root/Player/Model"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Root/Model"]
 mesh = ExtResource("3_5ncpa")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="Root/Player/Model"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Root/Model"]
 mesh = ExtResource("4_wi0c6")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="Root/Player/Model"]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Root/Model"]
 mesh = ExtResource("5_hp6x6")
-skeleton = NodePath("../..")
+skeleton = NodePath("")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="Root/Player/Model"]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Root/Model"]
 mesh = ExtResource("6_3tkgg")
-skeleton = NodePath("../..")
-
-[node name="Collision" type="CollisionShape3D" parent="Root/Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.268978, 0, 0)
-shape = SubResource("BoxShape3D_tdg3f")
+skeleton = NodePath("")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, -0.469471, 0.882947, 0, 0.882947, 0.469471, -1, 2.05213e-08, -3.85949e-08, 16.5504, 14.406, 1.90735e-06)

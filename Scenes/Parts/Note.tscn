@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5f7e441681ig"]
+[gd_scene load_steps=9 format=3 uid="uid://c5f7e441681ig"]
 
-[ext_resource type="Material" uid="uid://cr7i0xdkjnuyh" path="res://Assets/Fx/ProccessMat.tres" id="1_3rvi6"]
+[ext_resource type="Material" uid="uid://cr7i0xdkjnuyh" path="res://Assets/Fx/CollideFx.tres" id="1_3rvi6"]
 [ext_resource type="Script" uid="uid://bj103pqhnmgc4" path="res://Scenes/Parts/Note.gd" id="1_qur0b"]
 [ext_resource type="Material" uid="uid://b84rs8vn5lhqp" path="res://Assets/Fx/ParticleMat.tres" id="2_qur0b"]
+[ext_resource type="Material" uid="uid://comy0ukcl21a7" path="res://Assets/Fx/BornFx.tres" id="4_85ltf"]
+[ext_resource type="Material" uid="uid://dskpc5dffs37q" path="res://Assets/Fx/ParticleMatBillboard.tres" id="5_jf4v2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3rvi6"]
 size = Vector3(4, 4, 12)
 
 [sub_resource type="BoxMesh" id="BoxMesh_85ltf"]
 material = ExtResource("2_qur0b")
+
+[sub_resource type="QuadMesh" id="QuadMesh_85ltf"]
+material = ExtResource("5_jf4v2")
 
 [node name="Note" type="MeshInstance3D"]
 material_override = ExtResource("2_qur0b")
@@ -25,3 +30,14 @@ randomness = 1.0
 visibility_aabb = AABB(-400, -400, -400, 800, 800, 800)
 process_material = ExtResource("1_3rvi6")
 draw_pass_1 = SubResource("BoxMesh_85ltf")
+
+[node name="FxBorn" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 25
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+visibility_aabb = AABB(-400, -400, -400, 800, 800, 800)
+process_material = ExtResource("4_85ltf")
+draw_pass_1 = SubResource("QuadMesh_85ltf")
