@@ -21,7 +21,7 @@ albedo_color = Color(0.176419, 0.176419, 0.176419, 1)
 script = ExtResource("1_easfo")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(28.1181, -5.79478, 2.00227, 2.85548, 64.8879, -6.84752, -1.3421, 16.6514, 27.3804, -164.73, 10.3101, -60.9147)
+transform = Transform3D(28.1181, -5.79478, 2.00227, 2.38303, 66.9708, 0.854518, -2.06789, -1.61737, 28.2107, -164.73, 10.3101, -60.9147)
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_t46rk")
 skeleton = NodePath("")
