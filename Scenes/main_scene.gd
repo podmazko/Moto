@@ -3,8 +3,8 @@ extends Node3D
 #track setup
 var distance_per_bit:=100#m
 var bpm=70
-var beat_zones:={0:"pause", 8:"normal-", 36:"normal",68:"speed", 100:"normal",132:"speed",
-				164:"longing",196:"normal+",228:"speed",292:"pause"}
+var beat_zones:={0:"pause", 8:"normal-",32:"pause", 36:"normal",68:"speed", 100:"normal",132:"speed",
+				164:"longing",196:"normal+",224:"pause",228:"speed",292:"pause"}
 				
 				
 				
@@ -144,7 +144,8 @@ func zone_change(_new_zone:String)->void:
 	var _new_speed:float=zones_data[zone][2]
 	if PlayerData.speed!=_new_speed:
 		PlayerData.emit_signal("SpeedChange",_new_speed)
-	SpeedLines.material.set("shader_parameter/mask_edge",0.6+0.5*(2-PlayerData.speed))
+	var _tween:Tween=create_tween()
+	_tween.tween_property(SpeedLines.material,"shader_parameter/mask_edge",0.5+0.5*(2-PlayerData.speed),1.5)
 
 	if gen_zone.is_empty():
 		_set_gen_zone(zone)
@@ -180,3 +181,5 @@ func gen_chunk(_clean:=true)->void:
 #Speedlines!
 #song name
 #another road objects
+#two base colors setting(for each song their own)
+#diegetical level counter(0-100%?)
