@@ -16,14 +16,14 @@ var zones_data:={#beats per object, object type(0-nothing,1-basic,2-long), speed
 	"normal-":[2,1, 1.0],
 	"normal":[1,1, 1.0],
 	"normal+":[1,1, 1.0],
-	"speed":[1,1, 2.0],
+	"speed":[1,1, 1.7],
 	"longing":[1,2, 1.0],
 	}
 
 
 #calculatables
 var speed=0.0 #current m per second
-var aim_spd:float #aimed m per second
+var speed_base:float #aimed m per second
 var beat_time:float #seconds to one beat
 var beat:int=0 #current bit, helps generate objects on road
 var zone:String="pause"
@@ -44,7 +44,7 @@ var notes:={}
 func _ready() -> void:
 	PlayerData.SpeedChange.connect(SpeedChange)
 	beat_time=60.0/bpm
-	aim_spd=(bpm/60.0)*distance_per_bit
+	speed_base=(bpm/60.0)*distance_per_bit
 	
 	beat=0
 	zone_change(beat_zones[beat])
@@ -70,8 +70,9 @@ func _process(delta: float) -> void:
 	var _beat=int(_time/beat_time)
 	if _beat!=beat:
 		beat=_beat
-		gen_next_note(beat)
-		check_note(beat)
+		gen_beat=beat+3
+		check_cur_note()
+		gen_next_note()
 		if beat_zones.has(beat):
 			zone_change(beat_zones[beat])
 		$CanvasLayer/BitTracker.text=str(beat)+"\n"+zone
@@ -85,30 +86,41 @@ func _process(delta: float) -> void:
 	$CanvasLayer/Panel2.scale.x=$CanvasLayer/Panel.scale.x
 
 
-
-
-
-func gen_next_note(_beat:int)->void:
+var gen_beat:int
+var gen_zone:String
+func gen_next_note()->void:
+	var _beat_diff:int=gen_beat-beat
+	var _time:float=_beat_diff*beat_time
+	
+	if beat_zones.has(gen_beat): #change estimated zone
+			gen_zone=beat_zones[gen_beat]
+	
+	var posing:=[]
+	var estim_speed:float=speed_base*zones_data[gen_zone][2]
+	var _pos_diff:float=estim_speed/speed_base #for beuty collide
+	if estim_speed!=speed:
+		estim_speed=lerp(speed,estim_speed,0.6)
+		posing=[self,Player,_time,_pos_diff]
+	
 	var _note:MeshInstance3D=Note.instantiate()
 	Road.add_child(_note)
 	var _born_pos:Vector3
-	_born_pos.x=Player.position.x-distance_per_bit*4-1
+	_born_pos.x=Player.position.x-_time*estim_speed-_pos_diff
 	_born_pos.z=randi_range(-1,1)*17
-	_note.born(_born_pos)
-	notes[_beat+4]=_note
+	_note.born(_born_pos,posing)
+	notes[gen_beat]=_note
 	
+
+func check_cur_note()->void:
+	if notes.has(beat):
+		var _note:MeshInstance3D=notes[beat]
+		if abs(_note.position.z-Player.Root.global_position.z)<9:
+			_note.collide()
 	#delete node
-	var beat_to_clean:int=_beat-3
+	var beat_to_clean:int=beat-3
 	if notes.has(beat_to_clean):
 		notes[beat_to_clean].queue_free()
 		notes.erase(beat_to_clean)
-
-
-func check_note(_beat:int)->void:
-	if notes.has(_beat):
-		var _note:MeshInstance3D=notes[_beat]
-		if abs(_note.position.z-Player.Root.global_position.z)<9:
-			_note.collide()
 
 
 @onready var SpeedLines:ColorRect=$CanvasLayer/SpeedLines
@@ -120,10 +132,12 @@ func zone_change(_new_zone:String)->void:
 		PlayerData.emit_signal("SpeedChange",_new_speed)
 	SpeedLines.material.set("shader_parameter/mask_edge",0.6+0.5*(2-PlayerData.speed))
 
+	if gen_zone.is_empty():
+		gen_zone=zone
 
 func SpeedChange(_new_speed:float,time:float=3.0)->void:
 	var _tween:Tween=create_tween()
-	_tween.tween_property(self,"speed",aim_spd*_new_speed,time)\
+	_tween.tween_property(self,"speed",speed_base*_new_speed,time)\
 					.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 
@@ -142,3 +156,11 @@ func gen_chunk(_clean:=true)->void:
 	if _clean:#deleta last chunk
 		chunks[0].queue_free()
 		chunks.remove_at(0)
+
+
+
+
+
+##### NOTES
+# Notes generating(how often, how many, types, Z placement,Z placement pattern?)
+#Speedlines!
