@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bay8nhdw14dln"]
+[gd_scene load_steps=12 format=3 uid="uid://bay8nhdw14dln"]
 
 [ext_resource type="Material" uid="uid://bvwfis2o4g6e3" path="res://Assets/Materials/RoadMat.tres" id="1_26btb"]
 [ext_resource type="Script" uid="uid://cql1plxg5ho7w" path="res://Scenes/Parts/RoadChunk.gd" id="1_easfo"]
 [ext_resource type="Material" uid="uid://cl33fl0fjm3c1" path="res://Assets/Materials/NeonMat.tres" id="1_qanp8"]
 [ext_resource type="Material" uid="uid://b84rs8vn5lhqp" path="res://Assets/Fx/ParticleMat.tres" id="4_x3ynh"]
+[ext_resource type="PackedScene" uid="uid://cmj4segho5w7i" path="res://Assets/Models/Building/built_v_2.tscn" id="5_fegoy"]
+[ext_resource type="PackedScene" uid="uid://dos02cfxl7ngd" path="res://Assets/Models/Building/built_v_2_1.tscn" id="6_gm0pl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_t46rk"]
 
@@ -22,12 +24,14 @@ script = ExtResource("1_easfo")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
 transform = Transform3D(28.1181, -5.79478, 2.00227, 2.38303, 66.9708, 0.854518, -2.06789, -1.61737, 28.2107, -164.73, 10.3101, -60.9147)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_t46rk")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(28.114, 0.703947, 3.17904, -0.404914, 67.1961, 0.946177, -3.16701, -2.34227, 28.0996, -47.9847, 15.7336, 59.9916)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_t46rk")
 skeleton = NodePath("")
@@ -67,12 +71,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.48528, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(34.4477, 0, 0, 0, 48.3675, 0, 0, 0, 25.2973, -55.1335, 22.9905, 63.967)
+visible = false
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D38" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(11.4737, 0, 0, 0, 16.1101, 0, 0, 0, 8.42596, -88.3916, 0.343603, 59.8921)
+visible = false
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
@@ -97,102 +103,119 @@ skeleton = NodePath("")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(25.2973, 0, 0, 0, 66.9323, 0, 0, 0, 25.2973, -92.5793, 25.8516, 73.5548)
+visible = false
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D8" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(25.2973, 0, 0, 0, 87.536, 0, 0, 0, 25.2973, -128.431, 26.2443, 78.0794)
+visible = false
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(25.2973, 0, 0, 0, 66.9323, 0, 0, 0, 25.2973, -163.438, 25.8516, 73.5548)
+visible = false
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D19" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(25.2973, 0, 0, 0, 66.9323, 0, 0, 0, 25.2973, -196.564, 25.8516, 62.7233)
+visible = false
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D12" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(25.2973, 0, 0, 0, 66.9323, 0, 0, 0, 25.2973, -19.1935, 25.8516, 73.5548)
+visible = false
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D42" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-1.70597, 0, -0.0292626, 0, 26.7874, 0, 0.0079202, 0, -6.30303, -160.596, 26.4835, -45.3024)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D43" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-1.70597, 0, -0.0292626, 0, 26.7874, 0, 0.0079202, 0, -6.30303, -93.1046, 55.0577, -60.0848)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D44" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-1.70597, 0, -0.0292627, 0, 10.1794, 0, 0.00792018, 0, -6.30303, -42.2238, 10.1643, -46.5975)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D45" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-11.3099, 0, -0.00657358, 0, 32.5277, 0, 0.0525076, 0, -1.41592, -208.127, 23.6831, -58.5034)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D46" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-11.3099, 0, -0.00657358, 0, 11.8107, 0, 0.0525075, 0, -1.41592, -208.127, 50.4785, -58.5034)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D47" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-11.3099, 0, -0.00657358, 0, 11.8107, 0, 0.0525075, 0, -1.41592, -173.442, 31.3705, -49.4471)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D48" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -185.864, 31.3705, -49.3894)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D49" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-21.5801, 0, -0.0065736, 0, 11.8107, 0, 0.100189, 0, -1.41592, -173.487, 3.10658, -49.4469)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D50" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-16.3164, 0, -0.00658695, 0, 21.9078, 0, 0.0757511, 0, -1.41879, -34.6237, 31.3705, -48.5521)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D51" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -132.874, 50.5395, -58.9152)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D52" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -138.623, 50.5395, -58.8885)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D53" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -103.887, 50.5395, -63.8104)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
@@ -205,90 +228,105 @@ skeleton = NodePath("")
 
 [node name="MeshInstance3D55" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -109.997, 50.5395, -63.7821)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D56" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -109.997, 25.1541, -63.7821)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D57" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -96.1016, 25.1541, -63.8466)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D58" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -72.3718, 25.1541, -59.4905)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D59" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -64.26, 25.1541, -59.5281)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D60" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -58.3986, 25.1541, -59.5553)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D61" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -58.3986, 42.5525, -59.5553)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D62" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -65.6293, 42.5525, -59.5218)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D63" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -74.151, 42.5525, -59.4822)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D64" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -144.746, 50.5395, -58.8601)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D65" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -144.746, 34.2627, -58.8601)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D66" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-4.26086, 0, -0.00657358, 0, 11.8107, 0, 0.0197816, 0, -1.41592, -133.722, 15.2334, -58.9113)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D67" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-21.5801, 0, -0.0065736, 0, 11.8107, 0, 0.100189, 0, -1.41592, -102.139, 3.10658, -63.8338)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D68" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-34.4473, 0, -0.117445, 0, 48.3675, 0, 0.159926, 0, -25.2971, -175.237, 22.9905, -61.9793)
+visible = false
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D69" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-11.4736, 0, -0.0391182, 0, 16.1101, 0, 0.053268, 0, -8.42587, -141.961, 0.343603, -58.0588)
+visible = false
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
@@ -307,192 +345,252 @@ surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D72" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-25.2971, 0, -0.117445, 0, 66.9323, 0, 0.117445, 0, -25.2971, -137.836, 25.8516, -71.7408)
+visible = false
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D73" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-25.2971, 0, -0.117445, 0, 87.536, 0, 0.117445, 0, -25.2971, -102.006, 26.2443, -76.4318)
+visible = false
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D74" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-25.2971, 0, -0.117445, 0, 66.9323, 0, 0.117445, 0, -25.2971, -66.9786, 25.8516, -72.0698)
+visible = false
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D75" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-25.2971, 0, -0.117445, 0, 66.9323, 0, 0.117445, 0, -25.2971, -33.8025, 25.8516, -61.3922)
+visible = false
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D76" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(-25.2971, 0, -0.117445, 0, 66.9323, 0, 0.117445, 0, -25.2971, -211.221, 25.8516, -71.4001)
+visible = false
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Buildings"]
-transform = Transform3D(220.406, 0, 0, 0, 2.01559, 0, 0, 0, 118.017, -107.455, -2.93486, 93.2541)
+transform = Transform3D(201.181, 0, 0, 0, 2.01559, 0, 0, 0, 118.017, -107.455, -2.93486, 90.8142)
+mesh = SubResource("BoxMesh_easfo")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Buildings"]
+transform = Transform3D(201.181, 0, 0, 0, -0.189228, 117.496, 0, -2.00669, -11.0797, -107.455, 15.1896, 119.819)
+mesh = SubResource("BoxMesh_easfo")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="Buildings"]
+transform = Transform3D(201.181, 0, 0, 0, -0.189228, 117.496, 0, -2.00669, -11.0797, -107.455, 8.92913, -105.511)
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D77" type="MeshInstance3D" parent="Buildings"]
-transform = Transform3D(220.406, 0, 0, 0, 2.01559, 0, 0, 0, 118.017, -107.455, -2.95347, -93.654)
+transform = Transform3D(201.181, 0, 0, 0, 2.01559, 0, 0, 0, 118.017, -107.455, -2.95347, -90.1287)
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(1.70598, 0, 0, 0, 26.7874, 0, 0, 0, 6.30309, -69.6971, 26.4835, 47.2223)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D15" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(1.70598, 0, 0, 0, 26.7874, 0, 0, 0, 6.30309, -137.256, 55.0577, 61.6912)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D27" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(1.70598, 0, 0, 0, 10.1794, 0, 0, 0, 6.30309, -188.074, 10.1643, 47.9678)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D13" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(11.31, 0, 0, 0, 32.5277, 0, 0, 0, 1.41593, -22.2278, 23.6831, 60.6438)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D14" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(11.31, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -22.2278, 50.4785, 60.6438)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D16" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(11.31, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -56.8707, 31.3705, 51.4266)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D17" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -44.4481, 31.3705, 51.4266)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D18" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(21.5803, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -56.8254, 3.10658, 51.4266)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D20" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(16.3166, 0, 0, 0, 21.9078, 0, 0, 0, 1.41881, -195.683, 31.3705, 49.8872)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D21" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -97.4825, 50.5395, 60.7063)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D23" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -91.7326, 50.5395, 60.7063)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D28" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -126.491, 50.5395, 65.4669)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D29" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -120.381, 50.5395, 65.4669)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D30" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -120.381, 25.1541, 65.4669)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D31" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -134.277, 25.1541, 65.4669)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D32" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -157.986, 25.1541, 61.0007)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D33" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -166.098, 25.1541, 61.0007)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D34" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -171.96, 25.1541, 61.0007)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D35" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -171.96, 42.5525, 61.0007)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D36" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -164.729, 42.5525, 61.0007)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D37" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -156.207, 42.5525, 61.0007)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D24" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -85.6095, 50.5395, 60.7063)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D25" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -85.6095, 34.2627, 60.7063)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D26" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(4.26091, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -96.634, 15.2334, 60.7063)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D22" type="MeshInstance3D" parent="Buildings"]
 transform = Transform3D(21.5803, 0, 0, 0, 11.8107, 0, 0, 0, 1.41593, -128.24, 3.10658, 65.4821)
+visible = false
 material_override = ExtResource("1_qanp8")
 mesh = SubResource("BoxMesh_rhbvu")
 skeleton = NodePath("")
+
+[node name="built_v2" parent="." instance=ExtResource("5_fegoy")]
+transform = Transform3D(-2.33336, 0, 2.94291e-07, 0, 1.949, 0, 3.52327e-07, 0, 1.949, -164.692, -2.4219, 78.4665)
+
+[node name="built_v4" parent="." instance=ExtResource("5_fegoy")]
+transform = Transform3D(2.43774, 0, -1.23904e-07, 0, 1.756, 0, -1.54975e-07, 0, -1.949, -155.728, -2.4219, -70.6292)
+
+[node name="built_v7" parent="." instance=ExtResource("5_fegoy")]
+transform = Transform3D(1.9488, 0, 0, 0, 2.41349, 0, 0, 0, 2.7206, -100.44, -2.4219, 80.6537)
+
+[node name="built_v3" parent="." instance=ExtResource("5_fegoy")]
+transform = Transform3D(1.9488, 0, 0, 0, 2.25067, 0, 0, 0, 1.9488, -31.3176, -2.4219, -80.9417)
+
+[node name="built_v5" parent="." instance=ExtResource("6_gm0pl")]
+transform = Transform3D(2.39187, 0, 0, 0, 1.97889, 0, 0, 0, 1.97889, -34.8299, -1.4263, 69.8376)
+
+[node name="built_v6" parent="." instance=ExtResource("6_gm0pl")]
+transform = Transform3D(-1.97889, 0, -1.73e-07, 0, 1.97889, 0, 1.73e-07, 0, -1.97889, -89.264, -1.4263, -70.451)

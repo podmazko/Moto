@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dos02cfxl7ngd"]
+
+[ext_resource type="PackedScene" uid="uid://slwh2haf57eb" path="res://Assets/Models/Building/built_v2.glb" id="1_xvw5x"]
+[ext_resource type="Material" uid="uid://djes2vqfmv4uv" path="res://Assets/Materials/NeonMat2.tres" id="2_ih3vk"]
+
+[node name="built_v2" instance=ExtResource("1_xvw5x")]
+
+[node name="Cube_087" parent="." index="1"]
+material_override = ExtResource("2_ih3vk")

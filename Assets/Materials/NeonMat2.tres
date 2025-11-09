@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://djes2vqfmv4uv"]
+
+[ext_resource type="Shader" uid="uid://cjkyd02gytfns" path="res://Assets/Materials/NeonShader2.gdshader" id="1_hdr1b"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_hdr1b")
+shader_parameter/light = 1.0
