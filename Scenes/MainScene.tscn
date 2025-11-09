@@ -1,20 +1,28 @@
-[gd_scene load_steps=11 format=3 uid="uid://baa7oyotuduw3"]
+[gd_scene load_steps=12 format=3 uid="uid://baa7oyotuduw3"]
 
 [ext_resource type="Script" uid="uid://ck0j56dnvvskd" path="res://Scenes/main_scene.gd" id="1_x4av3"]
 [ext_resource type="AudioStream" uid="uid://cju7evaxoshtm" path="res://Assets/Music/Mr.Kitty - After Dark.mp3" id="2_uxrcv"]
 [ext_resource type="Shader" uid="uid://vvd6u1tnqqxi" path="res://Assets/Shaders/SoundFX.gdshader" id="3_rpqi1"]
 [ext_resource type="PackedScene" uid="uid://cefhlwtqdm8en" path="res://Scenes/Player.tscn" id="4_uxrcv"]
 [ext_resource type="Shader" uid="uid://b7umvy50opauo" path="res://Assets/Shaders/SpeedScreen.gdshader" id="5_rf2cd"]
+[ext_resource type="PackedScene" uid="uid://bay8nhdw14dln" path="res://Scenes/Parts/RoadChunk.tscn" id="6_y4jh7"]
 
 [sub_resource type="Environment" id="Environment_uxrcv"]
 background_mode = 1
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 0.8
+tonemap_exposure = 1.1
 glow_enabled = true
 glow_intensity = 1.0
 glow_strength = 1.4
 fog_enabled = true
 fog_light_color = Color(0.116659, 0.130722, 0.15283, 1)
+fog_light_energy = 2.0
 fog_density = 0.008
 adjustment_enabled = true
+adjustment_brightness = 0.92
+adjustment_contrast = 1.2
+adjustment_saturation = 1.1
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rf2cd"]
 
@@ -91,3 +99,6 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "XXX"
 horizontal_alignment = 1
+
+[node name="RoadChunk" parent="." instance=ExtResource("6_y4jh7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.3745, 0, 10.8991)
