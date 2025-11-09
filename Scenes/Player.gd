@@ -91,9 +91,30 @@ func SpeedChange(_new_speed:float,time:float=3.0)->void:
 	PlayerData.speed=_new_speed
 	_control=pow(PlayerData.speed,0.5)#conrollobility according to speed
 
+	if bump_tween:
+		bump_tween.kill()
 	if SpdTween:
 		SpdTween.kill()
 	SpdTween=create_tween().set_parallel(true)
 	SpdTween.tween_property(Camera,"fov",75+40*(_control-1),time*0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	SpdTween.tween_property(Camera,"rotation_degrees:x",-28+35*(_control-1),time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
+	
+func _init_player(_env:Environment,_stream:AudioStreamPlayer)->void:
+	env=_env
+	stream=_stream
+
+
+var env:Environment
+var stream:AudioStreamPlayer
+var bump_tween:Tween
+func camera_bump(_time:float)->void:
+	bump_tween=create_tween().set_parallel(true)
+	if !SpdTween.is_running(): #no bumb during camera movement
+		bump_tween.tween_property(Camera,"fov",Camera.fov,_time*0.4).from(Camera.fov-0.4*pow(PlayerData.speed,2.0))\
+					.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+	
+	bump_tween.tween_property(env,"adjustment_saturation",1.0,_time*0.6).from(1.15)\
+				.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	bump_tween.tween_property(stream,"volume_db",0.0,_time*0.6).from(4)\
+				.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)

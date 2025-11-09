@@ -3,7 +3,7 @@ extends Node3D
 #track setup
 var distance_per_bit:=100#m
 var bpm=70
-var beat_zones:={0:"pause", 16:"normal-", 36:"normal",68:"speed", 100:"normal",132:"speed",
+var beat_zones:={0:"pause", 8:"normal-", 36:"normal",68:"speed", 100:"normal",132:"speed",
 				164:"longing",196:"normal+",228:"speed",292:"pause"}
 				
 				
@@ -12,12 +12,12 @@ var beat_zones:={0:"pause", 16:"normal-", 36:"normal",68:"speed", 100:"normal",1
 #normal/+ - normal speed, obj per 2/1 beat   #speed - speed x2 + objects every beat
 #longing - long press beats objects   #pause - nothing
 var zones_data:={#beats per object, object type(0-nothing,1-basic,2-long), speed
-	"pause":[0,0, 1.0],
+	"pause":[999,0, 1.0],
 	"normal-":[2,1, 1.0],
 	"normal":[1,1, 1.0],
 	"normal+":[1,1, 1.0],
 	"speed":[1,1, 1.7],
-	"longing":[1,2, 1.0],
+	"longing":[2,2, 1.0],
 	}
 
 
@@ -33,6 +33,7 @@ var zone:String="pause"
 @onready var Chunk:PackedScene=preload("res://Scenes/Parts/RoadChunk.tscn")
 @onready var Mat=preload("res://Assets/Materials/NeonMat.tres")
 @onready var RoadMat=preload("res://Assets/Materials/RoadMat.tres")
+@onready var FxMat=preload("res://Assets/Fx/ParticleMat.tres")
 var chunks:=[]
 var notes:={}
 
@@ -55,6 +56,7 @@ func _ready() -> void:
 	_road_m=250
 
 	PlayerData.call_deferred("emit_signal","SpeedChange",1)
+	Player._init_player($WorldEnvironment.environment,$AudioStreamPlayer)
 
 
 
@@ -84,38 +86,50 @@ func _process(delta: float) -> void:
 	
 	$CanvasLayer/Panel.scale.x=3*_db
 	$CanvasLayer/Panel2.scale.x=$CanvasLayer/Panel.scale.x
+	FxMat.albedo_color=Color(1.0,0.65,0.0)*(0.9+0.4*_db)
 
+func _set_gen_zone(_zone:String)->void:
+	gen_zone=_zone
+	gen_zone_info=zones_data[gen_zone]
+	obj_gen_counter=0
 
 var gen_beat:int
 var gen_zone:String
+var gen_zone_info:Array
+var obj_gen_counter:int=0
 func gen_next_note()->void:
 	var _beat_diff:int=gen_beat-beat
 	var _time:float=_beat_diff*beat_time
 	
+	obj_gen_counter+=1
 	if beat_zones.has(gen_beat): #change estimated zone
-			gen_zone=beat_zones[gen_beat]
+		_set_gen_zone(beat_zones[gen_beat])
 	
-	var posing:=[]
-	var estim_speed:float=speed_base*zones_data[gen_zone][2]
-	var _pos_diff:float=estim_speed/speed_base #for beuty collide
-	if estim_speed!=speed:
-		estim_speed=lerp(speed,estim_speed,0.6)
-		posing=[self,Player,_time,_pos_diff]
-	
-	var _note:MeshInstance3D=Note.instantiate()
-	Road.add_child(_note)
-	var _born_pos:Vector3
-	_born_pos.x=Player.position.x-_time*estim_speed-_pos_diff
-	_born_pos.z=randi_range(-1,1)*17
-	_note.born(_born_pos,posing)
-	notes[gen_beat]=_note
+	#should gen?
+	if float(obj_gen_counter)/gen_zone_info[0]==obj_gen_counter/gen_zone_info[0]:
+		var posing:=[]
+		var estim_speed:float=speed_base*gen_zone_info[2]
+		var _pos_diff:float=estim_speed/speed_base #for beuty collide
+		if estim_speed!=speed:
+			estim_speed=lerp(speed,estim_speed,0.4)
+			posing=[self,Player,_time,_pos_diff]
+		
+		var _note:MeshInstance3D=Note.instantiate()
+		Road.add_child(_note)
+		var _born_pos:Vector3
+		_born_pos.x=Player.position.x-_time*estim_speed-_pos_diff
+		_born_pos.z=randi_range(-1,1)*17
+		_note.born(_born_pos,posing)
+		notes[gen_beat]=_note
 	
 
 func check_cur_note()->void:
 	if notes.has(beat):
 		var _note:MeshInstance3D=notes[beat]
 		if abs(_note.position.z-Player.Root.global_position.z)<9:
+			Player.camera_bump(beat_time)
 			_note.collide()
+
 	#delete node
 	var beat_to_clean:int=beat-3
 	if notes.has(beat_to_clean):
@@ -133,13 +147,13 @@ func zone_change(_new_zone:String)->void:
 	SpeedLines.material.set("shader_parameter/mask_edge",0.6+0.5*(2-PlayerData.speed))
 
 	if gen_zone.is_empty():
-		gen_zone=zone
+		_set_gen_zone(zone)
+		
 
 func SpeedChange(_new_speed:float,time:float=3.0)->void:
 	var _tween:Tween=create_tween()
 	_tween.tween_property(self,"speed",speed_base*_new_speed,time)\
 					.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-
 
 
 var _road_m:float=200 #to count when to generate next road chunk
@@ -162,5 +176,7 @@ func gen_chunk(_clean:=true)->void:
 
 
 ##### NOTES
-# Notes generating(how often, how many, types, Z placement,Z placement pattern?)
+# Notes generating(types, Z placement,Z placement pattern?)
 #Speedlines!
+#song name
+#another road objects

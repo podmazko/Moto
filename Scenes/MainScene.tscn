@@ -9,10 +9,12 @@
 [sub_resource type="Environment" id="Environment_uxrcv"]
 background_mode = 1
 glow_enabled = true
-glow_strength = 1.6
+glow_intensity = 1.0
+glow_strength = 1.4
 fog_enabled = true
 fog_light_color = Color(0.116659, 0.130722, 0.15283, 1)
 fog_density = 0.008
+adjustment_enabled = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rf2cd"]
 
@@ -22,7 +24,7 @@ noise = SubResource("FastNoiseLite_rf2cd")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a814b"]
 shader = ExtResource("5_rf2cd")
 shader_parameter/noise = SubResource("NoiseTexture2D_rf2cd")
-shader_parameter/line_color = Color(1, 0.196078, 1, 0.360784)
+shader_parameter/line_color = Color(1, 0.196078, 1, 0.498039)
 shader_parameter/line_count = 2.0
 shader_parameter/line_density = 0.5
 shader_parameter/line_faloff = 1.628
@@ -60,11 +62,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_uxrcv")
 offset_right = 511.0
 offset_bottom = 57.0
 
 [node name="Panel2" type="Panel" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_uxrcv")
 anchors_preset = 1
 anchor_left = 1.0
@@ -77,6 +81,7 @@ grow_horizontal = 0
 rotation = -3.14159
 
 [node name="BitTracker" type="Label" parent="CanvasLayer"]
+visible = false
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
