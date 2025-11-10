@@ -181,5 +181,6 @@ func gen_chunk(_clean:=true)->void:
 #Speedlines!
 #song name
 #another road objects
+#new note models
 #two base colors setting(for each song their own)
 #diegetical level counter(0-100%?)

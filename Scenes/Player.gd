@@ -100,10 +100,11 @@ func SpeedChange(_new_speed:float,time:float=3.0)->void:
 	SpdTween.tween_property(Camera,"rotation_degrees:x",-28+35*(_control-1),time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	
+var _base_saturation:float
 func _init_player(_env:Environment,_stream:AudioStreamPlayer)->void:
 	env=_env
 	stream=_stream
-
+	_base_saturation=env.adjustment_saturation
 
 var env:Environment
 var stream:AudioStreamPlayer
@@ -114,7 +115,7 @@ func camera_bump(_time:float)->void:
 		bump_tween.tween_property(Camera,"fov",Camera.fov,_time*0.4).from(Camera.fov-0.4*pow(PlayerData.speed,2.0))\
 					.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
 	
-	bump_tween.tween_property(env,"adjustment_saturation",1.0,_time*0.6).from(1.15)\
+	bump_tween.tween_property(env,"adjustment_saturation",_base_saturation,_time*0.6).from(_base_saturation*1.1)\
 				.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	bump_tween.tween_property(stream,"volume_db",0.0,_time*0.6).from(4)\
 				.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)

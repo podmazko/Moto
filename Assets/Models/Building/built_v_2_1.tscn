@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dos02cfxl7ngd"]
 
 [ext_resource type="PackedScene" uid="uid://slwh2haf57eb" path="res://Assets/Models/Building/built_v2.glb" id="1_xvw5x"]
-[ext_resource type="Material" uid="uid://djes2vqfmv4uv" path="res://Assets/Materials/NeonMat2.tres" id="2_ih3vk"]
+[ext_resource type="Material" uid="uid://cl33fl0fjm3c1" path="res://Assets/Materials/NeonMat.tres" id="2_ih3vk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ih3vk"]
 albedo_color = Color(0.23, 0.23, 0.23, 1)
