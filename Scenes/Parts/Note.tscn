@@ -2,12 +2,10 @@
 
 [ext_resource type="Material" uid="uid://cr7i0xdkjnuyh" path="res://Assets/Fx/CollideFx.tres" id="1_3rvi6"]
 [ext_resource type="Script" uid="uid://bj103pqhnmgc4" path="res://Scenes/Parts/Note.gd" id="1_qur0b"]
+[ext_resource type="ArrayMesh" uid="uid://c6fwg2ksy86a6" path="res://Assets/Models/Notes/Note_Cube.res" id="2_5je0f"]
 [ext_resource type="Material" uid="uid://b84rs8vn5lhqp" path="res://Assets/Fx/ParticleMat.tres" id="2_qur0b"]
 [ext_resource type="Material" uid="uid://comy0ukcl21a7" path="res://Assets/Fx/BornFx.tres" id="4_85ltf"]
 [ext_resource type="Material" uid="uid://dskpc5dffs37q" path="res://Assets/Fx/ParticleMatBillboard.tres" id="5_jf4v2"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_3rvi6"]
-size = Vector3(4, 4, 12)
 
 [sub_resource type="BoxMesh" id="BoxMesh_85ltf"]
 material = ExtResource("2_qur0b")
@@ -17,7 +15,7 @@ material = ExtResource("5_jf4v2")
 
 [node name="Note" type="MeshInstance3D"]
 material_override = ExtResource("2_qur0b")
-mesh = SubResource("BoxMesh_3rvi6")
+mesh = ExtResource("2_5je0f")
 script = ExtResource("1_qur0b")
 
 [node name="Fx" type="GPUParticles3D" parent="."]

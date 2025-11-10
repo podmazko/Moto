@@ -83,8 +83,8 @@ func _process(delta: float) -> void:
 	Mat.set("shader_parameter/light",pow(3*_db,0.6) )
 	RoadMat.set("shader_parameter/light",_db)
 	
-	$CanvasLayer/Panel.scale.x=3*_db
-	$CanvasLayer/Panel2.scale.x=$CanvasLayer/Panel.scale.x
+	#$CanvasLayer/Panel.scale.x=3*_db
+	#$CanvasLayer/Panel2.scale.x=$CanvasLayer/Panel.scale.x
 	FxMat.albedo_color=Color(1.0,0.65,0.0)*(0.9+0.4*_db)
 
 func _set_gen_zone(_zone:String)->void:
@@ -186,3 +186,4 @@ func gen_chunk(_clean:=true)->void:
 #two base colors setting(for each song their own)
 #diegetical level counter(0-100%?)
 #song selecting
+#kisel near road's sides
