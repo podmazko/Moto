@@ -4,20 +4,19 @@ extends Node3D
 var distance_per_bit:=100#m
 var bpm=70
 var beat_zones:={0:"pause", 8:"normal-",32:"pause", 36:"normal",68:"speed", 100:"normal",132:"speed",
-				164:"longing",196:"normal+",224:"pause",228:"speed",292:"pause"}
+				164:"longing",184:"normal-",204:"longing",224:"pause",228:"speed",292:"pause"}
 				
 				
 				
 #data params:
 #normal/+ - normal speed, obj per 2/1 beat   #speed - speed x2 + objects every beat
 #longing - long press beats objects   #pause - nothing
-var zones_data:={#beats per object, object type(0-nothing,1-basic,2-long), speed
-	"pause":[999,0, 1.0],
-	"normal-":[2,1, 1.0],
-	"normal":[1,1, 1.0],
-	"normal+":[1,1, 1.0],
-	"speed":[1,1, 1.7],
-	"longing":[2,2, 1.0],
+var zones_data:={#beats per object, object type(0-nothing,1-basic,2-long), speed,bump_power,patter
+	"pause":[999,0, 1.0,0.5,"none"],
+	"normal-":[2,1, 1.0,0.65,"side_to_side"],
+	"normal":[1,1, 1.0,1,"never_same"],
+	"speed":[1,1, 1.7,1.25,"never_same"],
+	"longing":[2,2, 1.0,0.5,"step_size_one"],
 	}
 
 
@@ -127,7 +126,7 @@ func check_cur_note()->void:
 	if notes.has(beat):
 		var _note:MeshInstance3D=notes[beat]
 		if abs(_note.position.z-Player.Root.global_position.z)<9:
-			Player.camera_bump(beat_time)
+			Player.bit_bump(beat_time,bump_power)
 			_note.collide()
 
 	#delete node
@@ -138,10 +137,12 @@ func check_cur_note()->void:
 
 
 @onready var SpeedLines:ColorRect=$CanvasLayer/SpeedLines
+var bump_power:float
 func zone_change(_new_zone:String)->void:
 	zone=_new_zone
 	
 	var _new_speed:float=zones_data[zone][2]
+	bump_power=zones_data[zone][3]
 	if PlayerData.speed!=_new_speed:
 		PlayerData.emit_signal("SpeedChange",_new_speed)
 	var _tween:Tween=create_tween()
@@ -184,3 +185,4 @@ func gen_chunk(_clean:=true)->void:
 #new note models
 #two base colors setting(for each song their own)
 #diegetical level counter(0-100%?)
+#song selecting

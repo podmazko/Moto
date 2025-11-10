@@ -9,8 +9,8 @@ void vertex() {
 
 void fragment() {
 	vec4 color=texture(_texture,UV);
-	ALBEDO.rgb=color.rgb*color.rgb;
-	EMISSION=ALBEDO.rgb*0.15+vec3(0.4,0.2,0.8)*0.03*light;
+	ALBEDO.rgb=color.rgb*color.rgb*0.6;
+	EMISSION=vec3(0.4,0.2,0.8)*0.03*light;
 }
 
 //void light() {
