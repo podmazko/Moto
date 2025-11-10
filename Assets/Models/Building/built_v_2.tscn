@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmj4segho5w7i"]
+
+[ext_resource type="PackedScene" uid="uid://slwh2haf57eb" path="res://Assets/Models/Building/built_v2.glb" id="1_bfdqu"]
+[ext_resource type="Material" uid="uid://cl33fl0fjm3c1" path="res://Assets/Materials/NeonMat.tres" id="2_7qgb5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qgb5"]
+albedo_color = Color(0.169245, 0.169245, 0.169245, 1)
+
+[node name="built_v2" instance=ExtResource("1_bfdqu")]
+
+[node name="Cube_100" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_7qgb5")
+
+[node name="Cube_087" parent="." index="1"]
+material_override = ExtResource("2_7qgb5")

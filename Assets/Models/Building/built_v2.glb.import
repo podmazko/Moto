@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b4242dc6pb0ir"
-path="res://.godot/imported/built.glb-d1c4157543c7a54541b84f0fc112ba37.scn"
+uid="uid://slwh2haf57eb"
+path="res://.godot/imported/built_v2.glb-56ff6ff8bfd38926d8be1c386f8ccf5a.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Building/built.glb"
-dest_files=["res://.godot/imported/built.glb-d1c4157543c7a54541b84f0fc112ba37.scn"]
+source_file="res://Assets/Models/Building/built_v2.glb"
+dest_files=["res://.godot/imported/built_v2.glb-56ff6ff8bfd38926d8be1c386f8ccf5a.scn"]
 
 [params]
 
@@ -32,17 +32,6 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"meshes": {
-"built_Cube_051": {
-"generate/lightmap_uv": 0,
-"generate/lods": 0,
-"generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"save_to_file/enabled": true,
-"save_to_file/path": "res://Assets/Models/Building/built_Cube_051.res"
-}
-}
-}
+_subresources={}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

@@ -8,13 +8,20 @@
 
 [sub_resource type="Environment" id="Environment_uxrcv"]
 background_mode = 1
+background_color = Color(1, 1, 1, 1)
+background_energy_multiplier = 0.8
+tonemap_exposure = 1.1
 glow_enabled = true
 glow_intensity = 1.0
 glow_strength = 1.4
 fog_enabled = true
 fog_light_color = Color(0.116659, 0.130722, 0.15283, 1)
+fog_light_energy = 2.0
 fog_density = 0.008
 adjustment_enabled = true
+adjustment_brightness = 0.92
+adjustment_contrast = 1.2
+adjustment_saturation = 1.1
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rf2cd"]
 
