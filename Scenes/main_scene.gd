@@ -4,7 +4,7 @@ extends Node3D
 var distance_per_bit:=100#m
 var bpm=70
 var beat_zones:={0:"pause", 8:"normal-",32:"pause", 36:"normal",68:"speed", 100:"normal",132:"speed",
-				164:"longing",184:"normal-",204:"longing",224:"pause",228:"speed",292:"pause"}
+				164:"longing-",224:"normal",226:"pause",228:"speed",292:"pause"}
 var counter_multiplayer:int=1 #for x2 bpm songs
 				
 				
@@ -16,7 +16,7 @@ var zones_data:={#beats per object, object type(0-nothing,1-basic,2-long), speed
 	"normal-":[2,1, 1.0,0.65,"side_to_side"],
 	"normal":[1,1, 1.0,1,"never_same"],
 	"speed":[1,1, 1.7,1.25,"never_same"],
-	"longing":[2,2, 1.0,0.5,"step_size_one"],
+	"longing-":[4,2, 1.0,0.5,"step_size_one"],
 	}
 
 
@@ -29,6 +29,7 @@ var zone:String="pause"
 
 
 @onready var Note:PackedScene=preload("res://Scenes/Parts/Note.tscn")
+@onready var NoteLong:PackedScene=preload("res://Scenes/Parts/NoteLong.tscn")
 @onready var Chunk:PackedScene=preload("res://Scenes/Parts/RoadChunk.tscn")
 @onready var Mat=preload("res://Assets/Materials/NeonMat.tres")
 @onready var RoadMat=preload("res://Assets/Materials/RoadMat.tres")
@@ -110,11 +111,22 @@ func gen_next_note()->void:
 		var posing:=[]
 		var estim_speed:float=speed_base*gen_zone_info[2]
 		var _pos_diff:float=estim_speed/speed_base #for beuty collide
-		if estim_speed!=speed:
-			estim_speed=lerp(speed,estim_speed,0.4)
-			posing=[self,Player,_time,_pos_diff]
 		
-		var _note:MeshInstance3D=Note.instantiate()
+		var _note:MeshInstance3D
+		match gen_zone_info[1]:#node typed
+			0:
+				return
+			1:#base
+				_note=Note.instantiate()
+				if estim_speed!=speed:
+					estim_speed=lerp(speed,estim_speed,0.4)
+					posing=[self,Player.Root,_time,_pos_diff]
+			2: #long
+				_note=NoteLong.instantiate()
+				estim_speed=lerp(speed,estim_speed,0.4)
+				posing=[self,Player.Root,_time,_time+(float(gen_every_n)-0.5*counter_multiplayer)*beat_time,_pos_diff]
+
+		
 		Road.add_child(_note)
 		var _born_pos:Vector3
 		_born_pos.x=Player.position.x-_time*estim_speed-_pos_diff
@@ -129,9 +141,11 @@ func check_cur_note()->void:
 		if abs(_note.position.z-Player.Root.global_position.z)<9:
 			Player.bit_bump(beat_time,bump_power)
 			_note.collide()
+		else:
+			_note.miss()
 
 	#delete node
-	var beat_to_clean:int=beat-3
+	var beat_to_clean:int=beat-5
 	if notes.has(beat_to_clean):
 		notes[beat_to_clean].queue_free()
 		notes.erase(beat_to_clean)
@@ -139,6 +153,7 @@ func check_cur_note()->void:
 
 @onready var SpeedLines:ColorRect=$CanvasLayer/SpeedLines
 var bump_power:float
+
 func zone_change(_new_zone:String)->void:
 	zone=_new_zone
 	
@@ -180,8 +195,10 @@ func gen_chunk(_clean:=true)->void:
 
 ##### NOTES
 # Notes generating(types, Z placement,Z placement pattern?)
+#wallnote  (Note param width)
 #Speedlines!
 #song name
+#ubder wheel fx + special fx on longing notes
 #another road objects
 #new note models
 #two base colors setting(for each song their own)

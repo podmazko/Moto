@@ -8,6 +8,9 @@ func collide()->void:
 	$Fx.emitting=true
 	
 
+func miss()->void:
+	pass
+
 func born(_pos:Vector3,posing:Array=[])->void:
 	position.z=_pos.z
 	position.x=_pos.x
@@ -32,7 +35,7 @@ var Player:Node3D
 var posing_diff:float
 func _process(delta: float) -> void:
 	posing_time-=delta
-	var _estimated_pos_x:float=Player.position.x-Main.speed*posing_time-posing_diff
+	var _estimated_pos_x:float=Player.global_position.x-Main.speed*posing_time-posing_diff
 	position.x=lerp(position.x,_estimated_pos_x,delta*5)
 
 	if posing_time<0.1:

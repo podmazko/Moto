@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://dgf04af2kvhfq"]
+
+[ext_resource type="Material" uid="uid://b84rs8vn5lhqp" path="res://Assets/Fx/ParticleMat.tres" id="1_gutvx"]
+[ext_resource type="ArrayMesh" uid="uid://c6fwg2ksy86a6" path="res://Assets/Models/Notes/Note_Cube.res" id="2_r26s2"]
+[ext_resource type="Script" uid="uid://jdwnykkqeklp" path="res://Scenes/Parts/NoteLong.gd" id="3_gutvx"]
+[ext_resource type="Material" uid="uid://cr7i0xdkjnuyh" path="res://Assets/Fx/CollideFx.tres" id="4_l2lu7"]
+[ext_resource type="Material" uid="uid://comy0ukcl21a7" path="res://Assets/Fx/BornFx.tres" id="5_5ijwp"]
+[ext_resource type="Material" uid="uid://nfduqelecmpa" path="res://Assets/Fx/LongFx.tres" id="5_r26s2"]
+[ext_resource type="Material" uid="uid://dskpc5dffs37q" path="res://Assets/Fx/ParticleMatBillboard.tres" id="6_ewpcb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_85ltf"]
+material = ExtResource("1_gutvx")
+
+[sub_resource type="QuadMesh" id="QuadMesh_85ltf"]
+material = ExtResource("6_ewpcb")
+
+[sub_resource type="QuadMesh" id="QuadMesh_gutvx"]
+material = ExtResource("1_gutvx")
+size = Vector2(1, 13)
+
+[node name="NoteLong" type="MeshInstance3D"]
+material_override = ExtResource("1_gutvx")
+mesh = ExtResource("2_r26s2")
+script = ExtResource("3_gutvx")
+
+[node name="Fx" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 200
+lifetime = 1.3
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+visibility_aabb = AABB(-400, -400, -400, 800, 800, 800)
+process_material = ExtResource("4_l2lu7")
+draw_pass_1 = SubResource("BoxMesh_85ltf")
+
+[node name="FxLong" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 200
+randomness = 1.0
+visibility_aabb = AABB(-400, -400, -400, 800, 800, 800)
+process_material = ExtResource("5_r26s2")
+draw_pass_1 = SubResource("BoxMesh_85ltf")
+
+[node name="FxBorn" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.77774, 0)
+emitting = false
+amount = 24
+one_shot = true
+explosiveness = 0.96
+randomness = 1.0
+visibility_aabb = AABB(-400, -400, -400, 800, 800, 800)
+process_material = ExtResource("5_5ijwp")
+draw_pass_1 = SubResource("QuadMesh_85ltf")
+
+[node name="TailRoot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05007, -1.88687, 0)
+
+[node name="Longing" type="MeshInstance3D" parent="TailRoot"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.5, 0, 0)
+mesh = SubResource("QuadMesh_gutvx")
+skeleton = NodePath("../..")
