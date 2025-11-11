@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcm1s7q8tt2ch"]
+
+[ext_resource type="PackedScene" uid="uid://d33phx4ehve0n" path="res://Assets/Models/Motorcycle/motocycle_1/moto.glb" id="1_w0yee"]
+
+[node name="moto2" instance=ExtResource("1_w0yee")]

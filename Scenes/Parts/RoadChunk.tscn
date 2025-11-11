@@ -21,30 +21,35 @@ script = ExtResource("1_easfo")
 
 [node name="road2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-5.5434e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1.26818, 4.37114e-08, 1.91069e-15, -139.998, -2.275, 0.0781709)
+visible = false
 material_override = ExtResource("1_26btb")
 mesh = SubResource("QuadMesh_easfo")
 skeleton = NodePath("")
 
 [node name="road6" type="MeshInstance3D" parent="."]
 transform = Transform3D(-5.5434e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1.26818, 4.37114e-08, 1.91069e-15, -179.699, -2.275, 0.0781709)
+visible = false
 material_override = ExtResource("1_26btb")
 mesh = SubResource("QuadMesh_easfo")
 skeleton = NodePath("")
 
 [node name="road3" type="MeshInstance3D" parent="."]
 transform = Transform3D(-5.5434e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1.26818, 4.37114e-08, 1.91069e-15, -100, -2.275, 0.108827)
+visible = false
 material_override = ExtResource("1_26btb")
 mesh = SubResource("QuadMesh_easfo")
 skeleton = NodePath("")
 
 [node name="road4" type="MeshInstance3D" parent="."]
 transform = Transform3D(-5.5434e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1.26818, 4.37114e-08, 1.91069e-15, -60, -2.275, 0.108827)
+visible = false
 material_override = ExtResource("1_26btb")
 mesh = SubResource("QuadMesh_easfo")
 skeleton = NodePath("")
 
 [node name="road5" type="MeshInstance3D" parent="."]
 transform = Transform3D(-5.5434e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1.26818, 4.37114e-08, 1.91069e-15, -20, -2.275, 0.108827)
+visible = false
 material_override = ExtResource("1_26btb")
 mesh = SubResource("QuadMesh_easfo")
 skeleton = NodePath("")
@@ -89,7 +94,7 @@ skeleton = NodePath("../../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="Base"]
-transform = Transform3D(201.181, 0, 0, 0, 2.01559, 0, 0, 0, 118.017, -107.455, -2.93486, 90.8142)
+transform = Transform3D(201.181, 0, 0, 0, 8.18576, 0, 0, 0, 118.017, -107.455, -2.90638, 90.8142)
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
@@ -107,7 +112,13 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 
 [node name="MeshInstance3D77" type="MeshInstance3D" parent="Base"]
-transform = Transform3D(201.181, 0, 0, 0, 2.01559, 0, 0, 0, 118.017, -107.455, -2.95347, -90.1287)
+transform = Transform3D(201.181, 0, 0, 0, 8.18576, 0, 0, 0, 118.017, -107.455, -2.98195, -90.1287)
+mesh = SubResource("BoxMesh_easfo")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
+
+[node name="MeshInstance3D78" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(201.181, 0, 0, 0, 2.01559, 0, 0, 0, 118.017, -107.455, -2.95347, -2.94996)
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
