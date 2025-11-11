@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://baa7oyotuduw3"]
 
 [ext_resource type="Script" uid="uid://ck0j56dnvvskd" path="res://Scenes/main_scene.gd" id="1_x4av3"]
-[ext_resource type="AudioStream" uid="uid://cju7evaxoshtm" path="res://Assets/Music/Mr.Kitty - After Dark.mp3" id="2_uxrcv"]
+[ext_resource type="AudioStream" uid="uid://cju7evaxoshtm" path="res://Assets/Music/Mr.Kitty - After Dark.mp3" id="2_qxria"]
 [ext_resource type="Shader" uid="uid://vvd6u1tnqqxi" path="res://Assets/Shaders/SoundFX.gdshader" id="3_rpqi1"]
 [ext_resource type="PackedScene" uid="uid://cefhlwtqdm8en" path="res://Scenes/Player.tscn" id="4_uxrcv"]
 [ext_resource type="Shader" uid="uid://b7umvy50opauo" path="res://Assets/Shaders/SpeedScreen.gdshader" id="5_rf2cd"]
@@ -12,7 +12,6 @@ background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.8
 tonemap_exposure = 1.1
 glow_enabled = true
-glow_intensity = 1.0
 glow_strength = 1.23
 fog_enabled = true
 fog_light_color = Color(0.116659, 0.130722, 0.15283, 1)
@@ -47,7 +46,7 @@ shader_parameter/light = 1.0
 script = ExtResource("1_x4av3")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_uxrcv")
+stream = ExtResource("2_qxria")
 autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("4_uxrcv")]

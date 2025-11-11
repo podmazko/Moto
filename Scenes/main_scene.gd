@@ -5,7 +5,7 @@ var distance_per_bit:=100#m
 var bpm=70
 var beat_zones:={0:"pause", 8:"normal-",32:"pause", 36:"normal",68:"speed", 100:"normal",132:"speed",
 				164:"longing",184:"normal-",204:"longing",224:"pause",228:"speed",292:"pause"}
-				
+var counter_multiplayer:int=1 #for x2 bpm songs
 				
 				
 #data params:
@@ -105,7 +105,8 @@ func gen_next_note()->void:
 		_set_gen_zone(beat_zones[gen_beat])
 	
 	#should gen?
-	if float(obj_gen_counter)/gen_zone_info[0]==obj_gen_counter/gen_zone_info[0]:
+	var gen_every_n:int=gen_zone_info[0]*counter_multiplayer
+	if float(obj_gen_counter)/gen_every_n==obj_gen_counter/gen_every_n:
 		var posing:=[]
 		var estim_speed:float=speed_base*gen_zone_info[2]
 		var _pos_diff:float=estim_speed/speed_base #for beuty collide
