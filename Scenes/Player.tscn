@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://cefhlwtqdm8en"]
+[gd_scene load_steps=19 format=4 uid="uid://cefhlwtqdm8en"]
 
 [ext_resource type="Script" uid="uid://cnor1rblg0sv7" path="res://Scenes/Player.gd" id="1_dtqjt"]
 
@@ -69,6 +69,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_acp5c")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gntrk"]
+albedo_color = Color(0.580392, 0.188235, 0.152941, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xuy4"]
 resource_name = "gray"
@@ -156,6 +159,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_q81mu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyqiw"]
+albedo_color = Color(0.581309, 0.187673, 0.153221, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cctqj"]
 resource_name = "glow_red"
@@ -277,11 +283,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.272, 11.4931)
 transform = Transform3D(2.11077, 0, 0, 0, 2.11077, 0, 0, 0, 2.11077, -1.25479, 5.57767, 0.000179291)
 mesh = SubResource("ArrayMesh_rpqav")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_gntrk")
 
 [node name="moto" type="MeshInstance3D" parent="Root"]
 transform = Transform3D(2.11077, 0, 0, 0, 2.11077, 0, 0, 0, 2.11077, 0.458868, 0.0111191, 0.000179291)
 mesh = SubResource("ArrayMesh_kyqiw")
 skeleton = NodePath("")
+surface_material_override/2 = SubResource("StandardMaterial3D_kyqiw")
 
 [node name="trace" type="MeshInstance3D" parent="Root"]
 transform = Transform3D(2.11077, 0, 0, 0, 2.11077, 0, 0, 0, 2.11077, 7.58799, 4.89042, -0.00151825)

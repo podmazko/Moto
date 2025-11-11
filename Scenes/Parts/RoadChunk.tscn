@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bay8nhdw14dln"]
+[gd_scene load_steps=15 format=4 uid="uid://bay8nhdw14dln"]
 
 [ext_resource type="Material" uid="uid://bvwfis2o4g6e3" path="res://Assets/Materials/RoadMat.tres" id="1_26btb"]
 [ext_resource type="Script" uid="uid://cql1plxg5ho7w" path="res://Scenes/Parts/RoadChunk.gd" id="1_easfo"]
@@ -15,6 +15,44 @@ size = Vector2(50, 40)
 albedo_color = Color(0.15, 0.15, 0.15, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rhbvu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fegoy"]
+albedo_color = Color(0.19, 0.19, 0.19, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bv3fx"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_8gndj"]
+_surfaces = [{
+"aabb": AABB(-0.702528, -5.05627e-08, -14.614, 1.40506, 1e-05, 29.2281),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIABAACAAUABgAEAAUABgAFAAcACAAGAAcACAAHAAkA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("J4waAf8/AAB5HWcCAAAAAKCp6gD/PwAAAACWAgAAAACF4i8A/38AAP//AAD/fwAAJ4waAf+/AACgqeoA/78AAAAAlgL//wAAeR1nAv//AAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fegoy"]
+resource_name = "wire_Plane_012"
+_surfaces = [{
+"aabb": AABB(-0.702528, -5.05627e-08, -14.614, 1.40506, 1e-05, 29.2281),
+"attribute_data": PackedByteArray("AAD/P///AAD///8/AAAAAAAA/3////9/AAD/v////78AAP///////w=="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIABAACAAUABgAEAAUABgAFAAcACAAGAAcACAAHAAkA"),
+"material": SubResource("StandardMaterial3D_bv3fx"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 10,
+"vertex_data": PackedByteArray("J4waAf8//795HWcCAAD/v6Cp6gD/P/+/AACWAgAA/7+F4i8A/3//v///AAD/f/+/J4waAf+//7+gqeoA/7//vwAAlgL///+/eR1nAv///7////9/////f////3////9/////f////3////9/////f////3////9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_8gndj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gm0pl"]
+albedo_color = Color(0.161783, 0.1615, 0.17, 1)
 
 [node name="RoadChunk" type="Node3D"]
 script = ExtResource("1_easfo")
@@ -121,7 +159,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
 transform = Transform3D(201.181, 0, 0, 0, 2.01559, 0, 0, 0, 118.017, -107.455, -2.95347, -2.94996)
 mesh = SubResource("BoxMesh_easfo")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_x3ynh")
+surface_material_override/0 = SubResource("StandardMaterial3D_fegoy")
 
 [node name="built_v2" parent="." instance=ExtResource("5_fegoy")]
 transform = Transform3D(2.32255, 0.0588658, 0.177863, -0.0106955, 1.87726, -0.523859, 0.224043, -0.520618, -1.86883, -164.692, 1.75082, 78.8097)
@@ -140,3 +178,51 @@ transform = Transform3D(2.38925, -0.0362812, -0.0851889, 0.0654958, 1.9296, 0.43
 
 [node name="built_v6" parent="." instance=ExtResource("6_gm0pl")]
 transform = Transform3D(-1.70895, 0.0920589, -0.993494, -0.0930096, 1.94717, 0.340418, 0.993405, 0.340676, -1.67723, -89.5674, 3.33301, -70.0515)
+
+[node name="wire" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.84217e-14, 1, 5.36442e-07, -4.28574, 1.75889e-08, -0.391713, -0.42362, -1.77947e-07, 3.96294, -64.1849, 65.5053, -4.48848e-06)
+mesh = SubResource("ArrayMesh_fegoy")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_gm0pl")
+
+[node name="wire7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.84217e-14, 1, 5.36442e-07, -4.28574, 1.75889e-08, -0.391713, -0.42362, -1.77947e-07, 3.96294, -38.2016, 63.4826, -4.48848e-06)
+mesh = SubResource("ArrayMesh_fegoy")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_gm0pl")
+
+[node name="wire8" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.46152e-14, 1, 5.36442e-07, -4.30662, 3.0585e-10, -0.00681165, -0.00736645, -1.78814e-07, 3.98225, -51.4464, 59.0261, -4.48848e-06)
+mesh = SubResource("ArrayMesh_fegoy")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_gm0pl")
+
+[node name="wire2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.84217e-14, 1, 5.36442e-07, -4.29391, -1.3734e-08, 0.305861, 0.330775, -1.78286e-07, 3.97049, -83.6258, 62.0151, -4.96001e-06)
+mesh = SubResource("ArrayMesh_fegoy")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_gm0pl")
+
+[node name="wire3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.84217e-14, 1, 5.36442e-07, -4.28574, 1.75889e-08, -0.391713, -0.42362, -1.77947e-07, 3.96294, -93.9611, 65.5053, -3.7767e-06)
+mesh = SubResource("ArrayMesh_fegoy")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_gm0pl")
+
+[node name="wire4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.84217e-14, 1, 5.36442e-07, -4.30663, 1.71583e-15, -3.00652e-07, -3.25142e-07, -1.78814e-07, 3.98225, -110.412, 66.7919, -9.13938e-07)
+mesh = SubResource("ArrayMesh_fegoy")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_gm0pl")
+
+[node name="wire5" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.84217e-14, 1, 5.36442e-07, -4.29391, -1.3734e-08, 0.305861, 0.330775, -1.78286e-07, 3.97049, -126.553, 62.0151, -2.05725e-07)
+mesh = SubResource("ArrayMesh_fegoy")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_gm0pl")
+
+[node name="wire6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.84217e-14, 1, 5.36442e-07, -4.30663, 1.71583e-15, -3.00652e-07, -3.25142e-07, -1.78814e-07, 3.98225, -143.004, 66.7919, 2.1855e-06)
+mesh = SubResource("ArrayMesh_fegoy")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_gm0pl")
