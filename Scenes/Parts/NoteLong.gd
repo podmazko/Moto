@@ -1,5 +1,6 @@
 extends MeshInstance3D
 
+var note_width:float=8.5
 
 @onready var Tail:Node3D=$TailRoot
 @onready var FxLong:GPUParticles3D=$FxLong
@@ -44,7 +45,7 @@ func _process(delta: float) -> void:
 	Tail.scale.x=lerp(Tail.scale.x,_estimated_pos_x-_estimated_tail_pos_x,delta*5)
 	
 	if posing_time<0.1: #player reached note
-		if abs(Player.global_position.z-position.z)<8:
+		if abs(Player.global_position.z-position.z)<note_width:
 			FxLong.global_position=Player.global_position-Vector3(posing_diff+2,0,0)
 			var _destortion:float=randf()*0.05
 			Tail.scale.z=0.975+_destortion

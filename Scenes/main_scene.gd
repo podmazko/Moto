@@ -3,8 +3,9 @@ extends Node3D
 #track setup
 var distance_per_bit:=100#m
 var bpm=70
-var beat_zones:={0:"pause", 8:"normal-",32:"pause", 36:"normal",68:"speed", 100:"normal",132:"speed",
-				164:"longing-",224:"normal",226:"pause",228:"speed",292:"pause"}
+var beat_zones:={0:"pause", 8:"normal-",34:"pause",36:"normal",67:"speedwall",68:"speed",
+				99:"wall",100:"pause",101:"normal",131:"speedwall",132:"speed",
+				163:"speedwall",164:"longing-",224:"normal",227:"pause",228:"speedwall",229:"speed",244:"speedwall",245:"speed",260:"speedwall",261:"speed",276:"speedwall",277:"speed",292:"speedwall",293:"pause"}
 var counter_multiplayer:int=1 #for x2 bpm songs
 				
 				
@@ -15,8 +16,13 @@ var zones_data:={#beats per object, object type(0-nothing,1-basic,2-long), speed
 	"pause":[999,0, 1.0,0.5,"none"],
 	"normal-":[2,1, 1.0,0.65,"side_to_side"],
 	"normal":[1,1, 1.0,1,"never_same"],
-	"speed":[1,1, 1.7,1.25,"never_same"],
 	"longing-":[4,2, 1.0,0.5,"step_size_one"],
+	"wall":[1,3, 1.0,1.5,"center"],
+	
+	"speedpause":[999,0, 1.7,0.5,"none"],
+	"speedwall":[1,3, 1.7,1.75,"center"],
+	"speed":[1,1, 1.7,1.25,"never_same"],
+	
 	}
 
 
@@ -111,6 +117,7 @@ func gen_next_note()->void:
 		var posing:=[]
 		var estim_speed:float=speed_base*gen_zone_info[2]
 		var _pos_diff:float=estim_speed/speed_base #for beuty collide
+		var _born_pos:Vector3
 		
 		var _note:MeshInstance3D
 		match gen_zone_info[1]:#node typed
@@ -118,19 +125,25 @@ func gen_next_note()->void:
 				return
 			1:#base
 				_note=Note.instantiate()
+				_born_pos.z=randi_range(-1,1)*17
 				if estim_speed!=speed:
 					estim_speed=lerp(speed,estim_speed,0.4)
 					posing=[self,Player.Root,_time,_pos_diff]
 			2: #long
 				_note=NoteLong.instantiate()
+				_born_pos.z=randi_range(-1,1)*17
 				estim_speed=lerp(speed,estim_speed,0.4)
 				posing=[self,Player.Root,_time,_time+(float(gen_every_n)-0.5*counter_multiplayer)*beat_time,_pos_diff]
-
+			3:#wall
+				_note=Note.instantiate()
+				_note.make_wall()
+				if estim_speed!=speed:
+					estim_speed=lerp(speed,estim_speed,0.4)
+					posing=[self,Player.Root,_time,_pos_diff]
 		
 		Road.add_child(_note)
-		var _born_pos:Vector3
 		_born_pos.x=Player.position.x-_time*estim_speed-_pos_diff
-		_born_pos.z=randi_range(-1,1)*17
+		
 		_note.born(_born_pos,posing)
 		notes[gen_beat]=_note
 	
@@ -138,7 +151,7 @@ func gen_next_note()->void:
 func check_cur_note()->void:
 	if notes.has(beat):
 		var _note:MeshInstance3D=notes[beat]
-		if abs(_note.position.z-Player.Root.global_position.z)<9:
+		if abs(_note.position.z-Player.Root.global_position.z)<_note.note_width:
 			Player.bit_bump(beat_time,bump_power)
 			_note.collide()
 		else:

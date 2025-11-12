@@ -1,5 +1,15 @@
 extends MeshInstance3D
 
+var note_width:float=8.5
+var base_scale:Vector3=Vector3(1,1,1)
+
+
+func make_wall()->void:
+	base_scale=Vector3(1.0,2.0,3.0)
+	note_width*=3
+	$Fx.amount=400
+
+
 func _ready() -> void:
 	set_process(false)
 
@@ -18,7 +28,7 @@ func born(_pos:Vector3,posing:Array=[])->void:
 	var _tween:Tween=create_tween().set_parallel(true)
 	_tween.tween_property(self,"position:y",0.0,0.55).from(7)\
 						.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	_tween.tween_property(self,"scale",Vector3(1,1,1),0.35).from(Vector3(0.33,3,0.33))\
+	_tween.tween_property(self,"scale",base_scale,0.35).from(base_scale*Vector3(0.33,3,0.33))\
 						.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	
 	if !posing.is_empty():
