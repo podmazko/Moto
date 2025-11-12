@@ -12,7 +12,7 @@ void fragment() {
 	vec4 color=texture(_texture,UV);
 	vec4 l_color=texture(_L_texture,UV);
 	ALBEDO.rgb=color.rgb*color.rgb*0.45;
-	EMISSION=vec3(0.4,0.2,0.8)*0.015*light+0.3*l_color.rgb*light;
+	EMISSION=vec3(0.4,0.2,0.8)*0.015*light+0.5*l_color.rgb*(light+0.2);
 }
 
 //void light() {

@@ -13,15 +13,15 @@ var counter_multiplayer:int=1 #for x2 bpm songs
 #normal/+ - normal speed, obj per 2/1 beat   #speed - speed x2 + objects every beat
 #longing - long press beats objects   #pause - nothing
 var zones_data:={#beats per object, object type(0-nothing,1-basic,2-long), speed,bump_power,patter
-	"pause":[999,0, 1.0,0.5,"none"],
-	"normal-":[2,1, 1.0,0.65,"side_to_side"],
-	"normal":[1,1, 1.0,1,"never_same"],
-	"longing-":[4,2, 1.0,0.5,"step_size_one"],
-	"wall":[1,3, 1.0,1.5,"center"],
+	"pause":[999,0, 1.0,  0.5,"none"],
+	"normal-":[2,1, 1.0,  0.65,"side_to_side"],
+	"normal":[1,1, 1.0,  0.95,"never_same"],
+	"longing-":[4,2, 1.0,  0.5,"step_size_one"],
+	"wall":[1,3, 1.0,  1.5,"center"],
 	
-	"speedpause":[999,0, 1.7,0.5,"none"],
-	"speedwall":[1,3, 1.7,1.75,"center"],
-	"speed":[1,1, 1.7,1.25,"never_same"],
+	"speedpause":[999,0, 1.7,  1.0,"none"],
+	"speedwall":[1,3, 1.7,  1.65,"center"],
+	"speed":[1,1, 1.7,  1.05,"never_same"],
 	
 	}
 
@@ -79,6 +79,7 @@ func _process(delta: float) -> void:
 	if _beat!=beat:
 		beat=_beat
 		gen_beat=beat+3
+		PlayerData.emit_signal("Beat",beat_time)
 		check_cur_note()
 		gen_next_note()
 		if beat_zones.has(beat):
@@ -87,6 +88,7 @@ func _process(delta: float) -> void:
 
 	#volume to visual
 	var _db=db_to_linear(AudioServer.get_bus_peak_volume_left_db(0,0) )
+	PlayerData.db=_db
 	Mat.set("shader_parameter/light",pow(3*_db,0.6) )
 	RoadMat.set("shader_parameter/light",_db)
 	
@@ -208,8 +210,8 @@ func gen_chunk(_clean:=true)->void:
 
 ##### NOTES
 # Notes generating(types, Z placement,Z placement pattern?)
-#wallnote  (Note param width)
-#Speedlines!
+#moyse controller
+#wallnote  impulse to full scene
 #song name
 #ubder wheel fx + special fx on longing notes
 #another road objects
