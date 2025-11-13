@@ -94,7 +94,7 @@ func _process(delta: float) -> void:
 	
 	#$CanvasLayer/Panel.scale.x=3*_db
 	#$CanvasLayer/Panel2.scale.x=$CanvasLayer/Panel.scale.x
-	FxMat.albedo_color=Color(1.0,0.65,0.0)*(0.9+0.4*_db)
+	FxMat.albedo_color=Color(1.0,0.65,0.0)*(1.1+0.25*_db)
 
 func _set_gen_zone(_zone:String)->void:
 	gen_zone=_zone

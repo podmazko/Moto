@@ -27,7 +27,7 @@ func born(_pos:Vector3,posing:Array=[])->void:
 	position.x=_pos.x
 	$FxBorn.emitting=true
 	_born_tween=create_tween().set_parallel(true)
-	_born_tween.tween_property(self,"position:y",0.0,0.55).from(7)\
+	_born_tween.tween_property(self,"position:y",-0.1,0.55).from(7)\
 						.set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	_born_tween.tween_property(self,"scale",base_scale,0.35).from(base_scale*Vector3(0.33,3,0.33))\
 						.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)

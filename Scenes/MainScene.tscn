@@ -12,10 +12,11 @@ background_color = Color(1, 1, 1, 1)
 background_energy_multiplier = 0.8
 tonemap_exposure = 1.1
 glow_enabled = true
+glow_intensity = 1.0
 glow_strength = 1.23
 fog_enabled = true
-fog_light_color = Color(0.116659, 0.130722, 0.15283, 1)
-fog_light_energy = 2.0
+fog_light_color = Color(0.0444366, 0.0526489, 0.0655594, 1)
+fog_light_energy = 3.0
 fog_density = 0.008
 adjustment_enabled = true
 adjustment_brightness = 0.92
@@ -50,6 +51,7 @@ stream = ExtResource("2_qxria")
 autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("4_uxrcv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.131382, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uxrcv")
@@ -97,3 +99,14 @@ offset_bottom = 23.0
 grow_horizontal = 2
 text = "XXX"
 horizontal_alignment = 1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.903403, -1.87431e-08, 0.428793, -0.428793, -3.9489e-08, 0.903403, 2.82017e-16, -1, -4.37114e-08, 0, 0, 0)
+light_color = Color(0.763881, 0.588882, 0.892329, 1)
+light_energy = 2.5
+light_specular = 0.5
+shadow_enabled = true
+shadow_normal_bias = 1.0
+directional_shadow_mode = 0
+directional_shadow_fade_start = 0.5
+directional_shadow_max_distance = 250.0

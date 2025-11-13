@@ -45,9 +45,11 @@ skeleton = NodePath("")
 transform = Transform3D(-4.37114e-08, -0.469471, 0.882948, 0, 0.882948, 0.469471, -1, 2.05213e-08, -3.85949e-08, 15.595, 14.666, 0)
 far = 600.0
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.84156, 31.5453, 0)
-light_color = Color(0.763881, 0.588882, 0.892329, 1)
-light_energy = 35.0
-shadow_enabled = true
-omni_range = 112.933
+[node name="ReflectionProbe" type="ReflectionProbe" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -149.523, 3.05176e-05, -0.70219)
+update_mode = 1
+blend_distance = 0.0
+max_distance = 300.0
+size = Vector3(319, 10, 60)
+cull_mask = 1047553
+reflection_mask = 1047553

@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://cl33fl0fjm3c1" path="res://Assets/Materials/NeonMat.tres" id="2_ih3vk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ih3vk"]
-albedo_color = Color(0.23, 0.23, 0.23, 1)
+albedo_color = Color(0.10748, 0.10748, 0.10748, 1)
 metallic = 0.38
 metallic_specular = 0.49
 

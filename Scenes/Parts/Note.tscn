@@ -14,11 +14,13 @@ material = ExtResource("2_qur0b")
 material = ExtResource("5_jf4v2")
 
 [node name="Note" type="MeshInstance3D"]
+layers = 2
 material_override = ExtResource("2_qur0b")
 mesh = ExtResource("2_5je0f")
 script = ExtResource("1_qur0b")
 
 [node name="Fx" type="GPUParticles3D" parent="."]
+layers = 2
 emitting = false
 amount = 200
 lifetime = 1.3
@@ -31,6 +33,7 @@ draw_pass_1 = SubResource("BoxMesh_85ltf")
 
 [node name="FxBorn" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.77774, 0)
+layers = 2
 emitting = false
 amount = 24
 one_shot = true

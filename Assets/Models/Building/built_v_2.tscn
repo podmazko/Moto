@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://cl33fl0fjm3c1" path="res://Assets/Materials/NeonMat.tres" id="2_7qgb5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qgb5"]
-albedo_color = Color(0.169245, 0.169245, 0.169245, 1)
+albedo_color = Color(0.062622, 0.062622, 0.062622, 1)
 
 [node name="built_v2" instance=ExtResource("1_bfdqu")]
 
