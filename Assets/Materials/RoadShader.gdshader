@@ -3,18 +3,20 @@ shader_type spatial;
 
 uniform sampler2D _texture;
 uniform sampler2D _L_texture;
+uniform sampler2D _rough_map;
 uniform float light=1.0;
 void vertex() {
 	// Called for every vertex the material is visible on.
 }
 
 void fragment() {
-	ROUGHNESS=0.0;
+	vec4 rough=texture(_rough_map,UV);
+	ROUGHNESS=0.04-0.3*rough.r;
 	METALLIC=0.97;
 	vec4 color=texture(_texture,UV);
 	vec4 l_color=texture(_L_texture,UV);
 	ALBEDO.rgb=color.rgb;
-	EMISSION=vec3(0.4,0.2,0.8)*0.01*light+l_color.rgb*(light+0.2);
+	EMISSION=vec3(0.4,0.2,0.8)*0.007*light+l_color.rgb*(light+0.2);
 }
 
 //void light() {

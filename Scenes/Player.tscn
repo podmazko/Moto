@@ -46,10 +46,9 @@ transform = Transform3D(-4.37114e-08, -0.469471, 0.882948, 0, 0.882948, 0.469471
 far = 600.0
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -149.523, 3.05176e-05, -0.70219)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -140.388, 3.05176e-05, -0.70219)
 update_mode = 1
-blend_distance = 0.0
 max_distance = 300.0
-size = Vector3(319, 10, 60)
+size = Vector3(300, 10, 60)
 cull_mask = 1047553
 reflection_mask = 1047553

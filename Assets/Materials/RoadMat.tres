@@ -1,12 +1,21 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://bvwfis2o4g6e3"]
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://bvwfis2o4g6e3"]
 
 [ext_resource type="Shader" uid="uid://qpgyntmwnjp5" path="res://Assets/Materials/RoadShader.gdshader" id="1_jj1tg"]
 [ext_resource type="Texture2D" uid="uid://dxj00ubsgtudh" path="res://Assets/Materials/RoadTextLight.png" id="2_jcjy3"]
 [ext_resource type="Texture2D" uid="uid://caddgd0gn63j8" path="res://Assets/Materials/RoadText.png" id="2_kjltv"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jcjy3"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jcjy3"]
+width = 128
+height = 128
+seamless = true
+noise = SubResource("FastNoiseLite_jcjy3")
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_jj1tg")
 shader_parameter/_texture = ExtResource("2_kjltv")
 shader_parameter/_L_texture = ExtResource("2_jcjy3")
+shader_parameter/_rough_map = SubResource("NoiseTexture2D_jcjy3")
 shader_parameter/light = 1.0
