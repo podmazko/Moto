@@ -7,7 +7,7 @@ void vertex() {
 }
 
 void fragment() {
-	ALBEDO.rgb=vec3(0.4,0.2,0.8)*0.5*light;
+	ALBEDO.rgb=vec3(0.4,0.2,0.8)*(0.5*light+0.1);
 }
 
 //void light() {

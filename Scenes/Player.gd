@@ -96,7 +96,7 @@ func SpeedChange(_new_speed:float,time:float=3.0)->void:
 	if SpdTween:
 		SpdTween.kill()
 	SpdTween=create_tween().set_parallel(true)
-	SpdTween.tween_property(Camera,"fov",75+40*(_control-1),time*0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	SpdTween.tween_property(Camera,"fov",85+40*(_control-1),time*0.8).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	SpdTween.tween_property(Camera,"rotation_degrees:x",-28+35*(_control-1),time).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	
 	
