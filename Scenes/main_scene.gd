@@ -1,11 +1,9 @@
 extends Node3D
 
 #track setup
-var distance_per_bit:=100#m
-var bpm=70
-var beat_zones:={0:"pause", 8:"normal-",34:"pause",36:"normal",67:"speedwall",68:"speed",
-				99:"wall",100:"pause",101:"normal",131:"speedwall",132:"speed",
-				163:"speedwall",164:"longing-",224:"normal",227:"pause",228:"speedwall",229:"speed",244:"speedwall",245:"speed",260:"speedwall",261:"speed",276:"speedwall",277:"speed",292:"speedwall",293:"pause"}
+var distance_per_bit:float#m
+var bpm:int
+var beat_zones:Dictionary
 var counter_multiplayer:int=1 #for x2 bpm songs
 				
 				
@@ -19,9 +17,9 @@ var zones_data:={#beats per object, object type(0-nothing,1-basic,2-long), speed
 	"longing-":[4,2, 1.0,  0.5,"step_size_one"],
 	"wall":[1,3, 1.0,  1.5,"center"],
 	
-	"speedpause":[999,0, 1.7,  1.0,"none"],
-	"speedwall":[1,3, 1.7,  1.65,"center"],
-	"speed":[1,1, 1.7,  1.05,"never_same"],
+	"speedpause":[999,0, 1.5,  1.0,"none"],
+	"speedwall":[1,3, 1.5,  1.65,"center"],
+	"speed":[1,1, 1.5,  1.05,"never_same"],
 	
 	}
 
@@ -34,6 +32,7 @@ var beat:int=0 #current bit, helps generate objects on road
 var zone:String="pause"
 
 
+var Viewport_:Viewport
 @onready var Note:PackedScene=preload("res://Scenes/Parts/Note.tscn")
 @onready var NoteLong:PackedScene=preload("res://Scenes/Parts/NoteLong.tscn")
 @onready var Chunk:PackedScene=preload("res://Scenes/Parts/RoadChunk.tscn")
@@ -49,20 +48,47 @@ var notes:={}
 @onready var AudioPlayer:AudioStreamPlayer=$AudioStreamPlayer
 
 func _ready() -> void:
+	Viewport_=get_viewport()
+	Viewport_.size_changed.connect(_viewport_change_size)
+	_viewport_change_size()
+	
 	PlayerData.SpeedChange.connect(SpeedChange)
+	Player._init_player($WorldEnvironment.environment,$AudioStreamPlayer)
+
+	_set_song("AfterDark")
+	_reset_road()
+
+
+func _viewport_change_size()->void:
+	SpeedLines.size.y=Viewport_.size.y*1.3
+	SpeedLines.position.y=-0.3*Viewport_.size.y
+
+func _set_song(_name:String)->void:
+	var _song_info:Dictionary=Data.Songs[_name]
+	
+	
+	AudioPlayer.stream=load(_song_info["path"])
+	for _param in ["distance_per_bit","bpm","beat_zones","counter_multiplayer"]:
+		set(_param,_song_info[_param])
+	
+	AudioPlayer.play()
 	beat_time=60.0/bpm
 	speed_base=(bpm/60.0)*distance_per_bit
 	
 	beat=0
+	PlayerData.speed=0.0
 	zone_change(beat_zones[beat])
 
+
+func _reset_road()->void:
+	for _ch in Road.get_children():
+		_ch.queue_free()
+	chunks=[]
+	notes={}
 	#start gen
 	for i in 5:
 		gen_chunk(false)
 	_road_m=250
-
-	PlayerData.call_deferred("emit_signal","SpeedChange",1)
-	Player._init_player($WorldEnvironment.environment,$AudioStreamPlayer)
 
 
 
@@ -118,7 +144,7 @@ func gen_next_note()->void:
 	if float(obj_gen_counter)/gen_every_n==obj_gen_counter/gen_every_n:
 		var posing:=[]
 		var estim_speed:float=speed_base*gen_zone_info[2]
-		var _pos_diff:float=estim_speed/speed_base #for beuty collide
+		var _pos_diff:float=pow(estim_speed/speed_base,2) #for beuty collide
 		var _born_pos:Vector3
 		
 		var _note:MeshInstance3D
@@ -177,7 +203,7 @@ func zone_change(_new_zone:String)->void:
 	if PlayerData.speed!=_new_speed:
 		PlayerData.emit_signal("SpeedChange",_new_speed)
 	var _tween:Tween=create_tween()
-	_tween.tween_property(SpeedLines.material,"shader_parameter/mask_edge",0.5+0.5*(2-PlayerData.speed),1.5)
+	_tween.tween_property(SpeedLines.material,"shader_parameter/mask_edge",1.08-0.38*PlayerData.speed,1.5)
 
 	if gen_zone.is_empty():
 		_set_gen_zone(zone)

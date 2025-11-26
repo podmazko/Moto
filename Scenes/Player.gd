@@ -3,6 +3,7 @@ extends Node3D
 
 @onready var Root:Node3D=$Root
 @onready var Camera:Camera3D=$Camera3D
+@onready var Light:SpotLight3D=$Root/Model/Light
 
 
 func _ready() -> void:
@@ -58,6 +59,10 @@ var _impulse_r:float
 var _control:float
 var road_width:float=22.0
 func _process(delta: float) -> void:
+	Light.light_energy=150+200*PlayerData.db
+	Light.light_color=lerp(Color(0.6,0.05,0.8),Color(0.95,0.65,0.1),0.5*PlayerData.db)
+	Light.spot_angle=25+10*PlayerData.db
+	
 	_press_times[0]-=delta
 	_press_times[1]-=delta
 	
@@ -117,5 +122,5 @@ func bit_bump(_time:float,_power:float)->void:
 	
 	bump_tween.tween_property(env,"adjustment_saturation",_base_saturation,_time*0.6).from(_base_saturation*1.1)\
 				.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	bump_tween.tween_property(stream,"volume_db",0.0,_time*0.6).from(4*_power)\
+	bump_tween.tween_property(stream,"volume_db",0.0,_time*0.6).from(3*_power)\
 				.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)

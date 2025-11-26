@@ -41,6 +41,13 @@ skeleton = NodePath("")
 mesh = ExtResource("6_3tkgg")
 skeleton = NodePath("")
 
+[node name="Light" type="SpotLight3D" parent="Root/Model"]
+transform = Transform3D(34.7951, -1.89076e-06, 47.7947, 1.76693e-06, 50, 6.91657e-07, -40.4226, 1.02139e-06, 29.4281, -265.867, 0, 200.468)
+light_color = Color(0.94, 0.622907, 0.0752, 1)
+light_energy = 200.0
+spot_range = 24.7662
+spot_angle = 25.45
+
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, -0.469471, 0.882948, 0, 0.882948, 0.469471, -1, 2.05213e-08, -3.85949e-08, 15.595, 14.666, 0)
 far = 600.0
